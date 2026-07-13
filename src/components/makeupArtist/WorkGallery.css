@@ -42,9 +42,9 @@
 
 .ring-carousel {
   position: relative;
-  --ring-radius: clamp(260px, 32vw, 400px);
-  --phone-width: clamp(120px, 14vw, 170px);
-  height: clamp(380px, 50vw, 520px);
+  --ring-radius: clamp(200px, 22vw, 280px);
+  --phone-width: clamp(170px, 18vw, 240px);
+  height: clamp(460px, 58vw, 620px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -204,9 +204,9 @@
 
 @media (max-width: 600px) {
   .ring-carousel {
-    --ring-radius: 220px;
-    --phone-width: 110px;
-    height: 360px;
+    --ring-radius: 155px;
+    --phone-width: 150px;
+    height: 420px;
   }
 
   .ring-carousel__hint {

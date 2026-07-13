@@ -30,7 +30,7 @@ function RingCarousel({ items }) {
             >
               <div className="ring-carousel__phone">
                 <div className="ring-carousel__phone-screen">
-                  <LazyImage src={item.image} alt={item.label} />
+                  <LazyImage src={item.imageFull || item.image} alt={item.label} />
                   <div className="ring-carousel__play">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                       <path d="M8 5v14l11-7z" />
