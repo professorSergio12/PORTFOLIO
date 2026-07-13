@@ -1,0 +1,18 @@
+:root {
+  --burgundy: #5b0d15;
+  --burgundy-dark: #3d080e;
+  --burgundy-light: #7a1520;
+  --cream: #f5ede4;
+  --cream-dark: #e8ddd2;
+  --gold: #c9a962;
+  --gold-light: #dfc88a;
+  --white: #ffffff;
+  --charcoal: #1a1a1a;
+
+  --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-sans: 'Outfit', system-ui, sans-serif;
+
+  --section-padding: clamp(4rem, 10vw, 7rem);
+  --container-width: 1280px;
+  --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}

@@ -1,0 +1,57 @@
+.arched-frame {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.arched-frame--portrait {
+  width: clamp(220px, 28vw, 320px);
+}
+
+.arched-frame--large {
+  width: clamp(280px, 35vw, 400px);
+}
+
+.arched-frame--small {
+  width: clamp(160px, 20vw, 220px);
+}
+
+.arched-frame__border {
+  position: relative;
+  padding: 3px;
+  border-radius: 999px 999px 24px 24px;
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(201, 169, 98, 0.6) 50%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  overflow: hidden;
+}
+
+.arched-frame__border::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 999px 999px 21px 21px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.arched-frame__image {
+  width: 100%;
+  aspect-ratio: 3 / 4.2;
+  object-fit: cover;
+  border-radius: 999px 999px 21px 21px;
+}
+
+.arched-frame--video .arched-frame__border {
+  border-radius: 999px 999px 24px 24px;
+}
+
+.arched-frame--video video {
+  width: 100%;
+  aspect-ratio: 3 / 4.2;
+  object-fit: cover;
+  border-radius: 999px 999px 21px 21px;
+}

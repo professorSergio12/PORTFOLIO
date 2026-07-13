@@ -1,0 +1,36 @@
+# Large source files — keep locally, don't commit
+src/assets/makeup-artist/gallery/[1-5].jpg
+src/assets/makeup-artist/gallery/originals/
+src/assets/**/originals/
+
+# Raw uncompressed videos (use compressed versions in repo)
+src/assets/**/*.mp4
+!src/assets/**/compressed/*.mp4
+
+# Build output
+dist
+dist-ssr
+
+# Dependencies
+node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.local
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
