@@ -37,7 +37,7 @@ function ReelCard({ reel, isPlaying, onPlay, onStop }) {
         }}
         role="button"
         tabIndex={0}
-        aria-label={`${isPlaying ? 'Pause' : 'Play'} ${reel.label || 'reel'}`}
+        aria-label={isPlaying ? 'Pause reel' : 'Play reel'}
       >
         <video
           ref={videoRef}
@@ -56,7 +56,6 @@ function ReelCard({ reel, isPlaying, onPlay, onStop }) {
           </svg>
         </span>
       </div>
-      {reel.label && <p className="reels-section__label">{reel.label}</p>}
     </article>
   )
 }

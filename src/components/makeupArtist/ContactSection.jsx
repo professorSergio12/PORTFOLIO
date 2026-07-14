@@ -3,8 +3,8 @@ import ArchedFrame from '../common/ArchedFrame'
 import PillButton from '../common/PillButton'
 import './ContactSection.css'
 
-export default function ContactSection({ contact, portrait, gallery }) {
-  const sideImages = [gallery[0]?.imageFull, gallery[4]?.imageFull]
+export default function ContactSection({ contact }) {
+  const sideImages = contact.sideImages ?? []
   const ctaLabel = contact.cta ?? 'Book a Session'
   const footerText = contact.footer ?? '© 2026 — Makeup Artist & Wedding Planner'
 

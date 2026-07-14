@@ -45,6 +45,11 @@ const portraitImages = import.meta.glob(
   { eager: true, import: 'default' },
 )
 
+const contactSideImages = import.meta.glob(
+  '../assets/makeup-artist/gallery/optimized/contact-*.{jpg,jpeg,png,webp}',
+  { eager: true, import: 'default' },
+)
+
 function isPortraitName(name) {
   return /^about-portrait/i.test(name)
 }
@@ -70,11 +75,16 @@ export function loadMakeupArtistAssets() {
 
   const reels = buildReels(entriesFromGlob(reelVideos), posterEntries)
 
+  const optimizedEntries = entriesFromGlob(optimizedImages)
+  const contactLeft = optimizedEntries.find((entry) => entry.name === '9083')
+  const contactRight = pickPreferred(entriesFromGlob(contactSideImages), ['contact-side'])
+
   return {
     heroVideo: heroVideo?.url ?? null,
     portrait: portraitEntry?.url ?? gallery[0]?.imageFull ?? null,
     gallery,
     reels,
     portfolioDetail: buildPortfolioDetail(gallery),
+    contactImages: [contactLeft?.url, contactRight?.url].filter(Boolean),
   }
 }

@@ -36,7 +36,7 @@ export default function MakeupArtistPage() {
         section={data.processSection}
         portrait={data.gallery[1]?.imageFull}
       />
-      <ContactSection contact={data.contact} portrait={data.portrait} gallery={data.gallery} />
+      <ContactSection contact={data.contact} />
     </main>
   )
 }

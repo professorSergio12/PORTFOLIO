@@ -131,7 +131,6 @@ export function buildReels(videos, posters) {
       id: index + 1,
       video: entry.url,
       ...(poster ? { poster, previewTime: 0 } : {}),
-      label: filenameToLabel(entry.name),
     }
   })
 }

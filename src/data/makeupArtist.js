@@ -48,7 +48,7 @@ export const makeupArtistData = {
   services: [
     {
       name: 'Demo 1: Party Makeup Look',
-      price: '$129 USD',
+      price: '₹129',
       highlights: [
         'Understanding skin preparation for flawless makeup',
         'Product knowledge and correct application techniques',
@@ -59,7 +59,7 @@ export const makeupArtistData = {
     },
     {
       name: 'Demo 2: Engagement Glam Look',
-      price: '$139 USD',
+      price: '₹139',
       highlights: [
         'Creating a luxurious glam makeup look',
         'Glitter and shimmer application techniques',
@@ -70,7 +70,7 @@ export const makeupArtistData = {
     },
     {
       name: 'Demo 3: Soft Glam Makeup Look',
-      price: '$149 USD',
+      price: '₹149',
       highlights: [
         'Mastering seamless eyeshadow blending',
         'Neutral eye makeup techniques',
@@ -81,7 +81,7 @@ export const makeupArtistData = {
     },
     {
       name: 'Demo 4: Self Makeup Masterclass',
-      price: '$199 USD',
+      price: '₹199',
       badge: 'Most Popular',
       highlights: [
         'Everyday makeup made easy',
@@ -96,7 +96,7 @@ export const makeupArtistData = {
   courseBundle: {
     badge: 'Best Value',
     name: 'Complete Professional Makeup Course',
-    price: '$500 USD',
+    price: '₹500',
     includes: [
       'All 4 Makeup Classes',
       'Makeup Theory & Product Knowledge',
@@ -136,5 +136,6 @@ export const makeupArtistData = {
     phone: '+91 6283682424',
     cta: 'Enroll Now',
     footer: '© 2026 — Beauty Maison by Mannat Vig',
+    sideImages: assets.contactImages,
   },
 }
