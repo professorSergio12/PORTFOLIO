@@ -2,6 +2,7 @@ import { makeupArtistData } from '../data/makeupArtist'
 import HeroVideo from '../components/makeupArtist/HeroVideo'
 import AboutSection from '../components/makeupArtist/AboutSection'
 import WorkGallery from '../components/makeupArtist/WorkGallery'
+import ReelsSection from '../components/makeupArtist/ReelsSection'
 import PortfolioGrid from '../components/makeupArtist/PortfolioGrid'
 import ServicesSection from '../components/makeupArtist/ServicesSection'
 import ProcessSection from '../components/makeupArtist/ProcessSection'
@@ -14,19 +15,28 @@ export default function MakeupArtistPage() {
     <main className="makeup-artist-page">
       <HeroVideo
         video={data.reel}
-        title={data.name}
+        label={data.heroLabel}
+        title={data.heroTitle}
         tagline={data.tagline}
       />
       <AboutSection portrait={data.portrait} about={data.about} />
       <WorkGallery items={data.gallery} />
-      <PortfolioGrid gallery={data.gallery} portrait={data.gallery[2]?.imageFull} />
-      <ServicesSection services={data.services} />
-      <ProcessSection steps={data.process} portrait={data.gallery[1]?.imageFull} />
-      <ContactSection
-        contact={data.contact}
-        portrait={data.portrait}
-        gallery={data.gallery}
+      <ReelsSection reels={data.reels} section={data.reelsSection} />
+      <PortfolioGrid
+        featured={data.portfolioDetail.featured}
+        grid={data.portfolioDetail.grid}
       />
+      <ServicesSection
+        services={data.services}
+        section={data.servicesSection}
+        courseBundle={data.courseBundle}
+      />
+      <ProcessSection
+        steps={data.process}
+        section={data.processSection}
+        portrait={data.gallery[1]?.imageFull}
+      />
+      <ContactSection contact={data.contact} portrait={data.portrait} gallery={data.gallery} />
     </main>
   )
 }

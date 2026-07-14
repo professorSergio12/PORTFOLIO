@@ -3,14 +3,16 @@ import ScrollReveal from '../common/ScrollReveal'
 import ArchedFrame from '../common/ArchedFrame'
 import './PortfolioGrid.css'
 
-export default function PortfolioGrid({ gallery, portrait }) {
-  const gridImages = gallery.slice(1, 5)
-
+export default function PortfolioGrid({ featured, grid }) {
   return (
     <section className="portfolio-grid">
       <div className="portfolio-grid__inner">
         <ScrollReveal direction="left" className="portfolio-grid__portrait">
-          <ArchedFrame src={portrait} alt="Featured look" variant="large" />
+          <ArchedFrame
+            src={featured.imageFull || featured.image}
+            alt={featured.label}
+            variant="large"
+          />
         </ScrollReveal>
 
         <div className="portfolio-grid__content">
@@ -24,7 +26,7 @@ export default function PortfolioGrid({ gallery, portrait }) {
           </ScrollReveal>
 
           <div className="portfolio-grid__images">
-            {gridImages.map((item, i) => (
+            {grid.map((item, i) => (
               <motion.div
                 key={item.id}
                 className="portfolio-grid__item"

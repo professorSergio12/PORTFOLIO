@@ -5,6 +5,8 @@ import './ContactSection.css'
 
 export default function ContactSection({ contact, portrait, gallery }) {
   const sideImages = [gallery[0]?.imageFull, gallery[4]?.imageFull]
+  const ctaLabel = contact.cta ?? 'Book a Session'
+  const footerText = contact.footer ?? '© 2026 — Makeup Artist & Wedding Planner'
 
   return (
     <section id="contact" className="contact-section">
@@ -33,18 +35,20 @@ export default function ContactSection({ contact, portrait, gallery }) {
               {contact.phone}
             </a>
 
-            <span className="contact-section__link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <rect x="2" y="2" width="20" height="20" rx="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
-              </svg>
-              {contact.instagram}
-            </span>
+            {contact.instagram && (
+              <span className="contact-section__link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+                </svg>
+                {contact.instagram}
+              </span>
+            )}
           </div>
 
           <PillButton href={`mailto:${contact.email}`} variant="cream">
-            Book a Session
+            {ctaLabel}
           </PillButton>
         </ScrollReveal>
 
@@ -54,7 +58,7 @@ export default function ContactSection({ contact, portrait, gallery }) {
       </div>
 
       <footer className="contact-section__footer">
-        <p>© 2026 — Makeup Artist & Wedding Planner</p>
+        <p>{footerText}</p>
       </footer>
     </section>
   )

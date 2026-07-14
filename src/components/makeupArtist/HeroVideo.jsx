@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import './HeroVideo.css'
 
-export default function HeroVideo({ video, title, tagline }) {
+export default function HeroVideo({ video, label, title, brandLine, tagline }) {
   const videoRef = useRef(null)
 
   return (
@@ -32,7 +32,7 @@ export default function HeroVideo({ video, title, tagline }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.7 }}
         >
-          Makeup Artist
+          {label}
         </motion.p>
 
         <motion.h1
@@ -43,6 +43,17 @@ export default function HeroVideo({ video, title, tagline }) {
         >
           {title}
         </motion.h1>
+
+        {brandLine && (
+          <motion.p
+            className="hero-video__brand"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.7 }}
+          >
+            {brandLine}
+          </motion.p>
+        )}
 
         <motion.p
           className="hero-video__tagline"

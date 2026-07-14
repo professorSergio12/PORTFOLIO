@@ -1,5 +1,5 @@
 import ScrollReveal from '../common/ScrollReveal'
-import ArchedFrame from '../common/ArchedFrame'
+import RingPeekPortrait from './RingPeekPortrait'
 import StarDecoration from '../common/StarDecoration'
 import PillButton from '../common/PillButton'
 import './AboutSection.css'
@@ -21,11 +21,7 @@ export default function AboutSection({ portrait, about }) {
         </ScrollReveal>
 
         <div className="about-section__center">
-          <ArchedFrame
-            src={portrait}
-            alt="Makeup artist portrait"
-            variant="large"
-          />
+          <RingPeekPortrait src={portrait} alt="Makeup artist portrait" />
         </div>
 
         <ScrollReveal direction="right" className="about-section__col about-section__col--right">

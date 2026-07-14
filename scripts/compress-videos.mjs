@@ -1,4 +1,4 @@
-import { mkdir } from 'fs/promises'
+import { mkdir, access } from 'fs/promises'
 import { spawn } from 'child_process'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -9,11 +9,11 @@ const root = path.join(__dirname, '../src/assets')
 
 const videos = [
   {
-    input: path.join(root, 'makeup-artist/mua-reel.mp4'),
+    input: path.join(root, 'makeup-artist/raw/mua-reel.mp4'),
     output: path.join(root, 'makeup-artist/compressed/mua-reel.mp4'),
   },
   {
-    input: path.join(root, 'wedding-planner/decor-reel.mp4'),
+    input: path.join(root, 'wedding-planner/raw/decor-reel.mp4'),
     output: path.join(root, 'wedding-planner/compressed/decor-reel.mp4'),
   },
 ]
@@ -26,6 +26,13 @@ function runFfmpeg(args) {
 }
 
 for (const { input, output } of videos) {
+  try {
+    await access(input)
+  } catch {
+    console.log(`Skip — raw file not found: ${input}`)
+    continue
+  }
+
   await mkdir(path.dirname(output), { recursive: true })
   console.log(`Compressing ${path.basename(input)}...`)
   await runFfmpeg([

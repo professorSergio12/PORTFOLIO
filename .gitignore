@@ -1,7 +1,13 @@
 # Large source files — keep locally, don't commit
 src/assets/makeup-artist/gallery/[1-5].jpg
-src/assets/makeup-artist/gallery/originals/
+src/assets/makeup-artist/gallery/*.HEIC
+src/assets/makeup-artist/gallery/*.heic
+src/assets/makeup-artist/gallery/*.MOV
+src/assets/makeup-artist/gallery/*.mov
+src/assets/makeup-artist/gallery/*.PNG
+src/assets/makeup-artist/reels/
 src/assets/**/originals/
+src/assets/**/raw/
 
 # Raw uncompressed videos (use compressed versions in repo)
 src/assets/**/*.mp4

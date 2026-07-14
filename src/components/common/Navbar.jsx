@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import BrandLogo from './BrandLogo'
 import './Navbar.css'
 
 export default function Navbar() {
@@ -31,6 +32,8 @@ export default function Navbar() {
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="navbar__inner">
+        <BrandLogo />
+
         <nav className="navbar__links">
           {links.map((link) => (
             <Link

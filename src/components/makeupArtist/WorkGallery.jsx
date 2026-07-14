@@ -10,41 +10,35 @@ function RingCarousel({ items }) {
 
   return (
     <div
-      className="ring-carousel"
+      className="ring-carousel-wrap"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="ring-carousel__floor" aria-hidden="true" />
-      <div className="ring-carousel__glow" aria-hidden="true" />
+      <div className="ring-carousel" style={{ '--count': items.length }}>
+        <div className="ring-carousel__floor" aria-hidden="true" />
+        <div className="ring-carousel__glow" aria-hidden="true" />
 
-      <div className="ring-carousel__scene">
-        <div
-          className={`ring-carousel__ring ${paused ? 'ring-carousel__ring--paused' : ''}`}
-          style={{ '--count': items.length }}
-        >
-          {items.map((item, i) => (
-            <div
-              key={item.id}
-              className="ring-carousel__item"
-              style={{ '--angle': `${i * angleStep}deg` }}
-            >
-              <div className="ring-carousel__phone">
-                <div className="ring-carousel__phone-screen">
-                  <LazyImage src={item.imageFull || item.image} alt={item.label} />
-                  <div className="ring-carousel__play">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
+        <div className="ring-carousel__scene">
+          <div
+            className={`ring-carousel__ring ${paused ? 'ring-carousel__ring--paused' : ''}`}
+          >
+            {items.map((item, i) => (
+              <div
+                key={item.id}
+                className="ring-carousel__item"
+                style={{ '--angle': `${i * angleStep}deg` }}
+              >
+                <div className="ring-carousel__phone">
+                  <div className="ring-carousel__phone-screen">
+                    <LazyImage src={item.imageFull || item.image} alt={item.label} />
                   </div>
+                  <span className="ring-carousel__label">{item.label}</span>
                 </div>
-                <span className="ring-carousel__label">{item.label}</span>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-
-      <p className="ring-carousel__hint">Hover to pause</p>
     </div>
   )
 }
@@ -62,6 +56,7 @@ export default function WorkGallery({ items }) {
         </ScrollReveal>
 
         <motion.div
+          className="work-gallery__carousel-wrap"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
@@ -69,6 +64,8 @@ export default function WorkGallery({ items }) {
         >
           <RingCarousel items={items} />
         </motion.div>
+
+        <p className="work-gallery__hint">Hover to pause</p>
 
         <ScrollReveal delay={0.3}>
           <p className="work-gallery__stat">

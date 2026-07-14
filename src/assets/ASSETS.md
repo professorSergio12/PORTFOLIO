@@ -1,22 +1,26 @@
 # Assets Guide
 
-## What's committed to Git
-- `gallery/thumbs/` — small images for carousel (~45 KB each)
-- `gallery/optimized/` — medium images for sections (~200 KB each)
-- `**/compressed/*.mp4` — web-optimized videos
+## What's in the repo (used by the site)
+- `gallery/thumbs/` — carousel thumbnails (~40–60 KB)
+- `gallery/optimized/` — section & gallery images (~150–300 KB)
+- `compressed/mua-reel.mp4` — hero video
+- `compressed/reels/*.mp4` — reel carousel videos
+- `wedding-planner/compressed/decor-reel.mp4`
 
-## What's NOT committed (local only)
-- Original full-size JPGs in `gallery/originals/`
-- Raw video files (`mua-reel.mp4`, `decor-reel.mp4` in parent folders)
+**Total assets folder: ~23 MB**
 
-## After cloning the repo
-1. Place your raw videos in:
-   - `src/assets/makeup-artist/mua-reel.mp4`
-   - `src/assets/wedding-planner/decor-reel.mp4`
-2. Run compression:
-   ```bash
-   npm run compress-videos
-   npm run optimize-images
-   ```
+## Raw files (NOT in repo — local only)
+Drop originals here when you need to re-compress:
+- `makeup-artist/raw/mua-reel.mp4`
+- `makeup-artist/reels/*.MOV` — reel sources
+- `makeup-artist/gallery/*.HEIC` — photo sources
+- `wedding-planner/raw/decor-reel.mp4`
 
-Or copy compressed files from a teammate who already has them.
+These folders are gitignored. After adding raw files, run:
+```bash
+npm run compress-videos   # hero + decor reels
+npm run compress-reels    # gallery/reels MOV files
+npm run process-heic -- IMG_XXXX.HEIC   # single HEIC → thumbs + optimized
+```
+
+Then delete the raw files locally once compressed versions look good.
