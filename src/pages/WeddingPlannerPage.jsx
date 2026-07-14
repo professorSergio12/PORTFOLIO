@@ -1,20 +1,26 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import decorReel from '../assets/wedding-planner/compressed/decor-reel.mp4'
+import { loadWeddingPlannerAssets } from '../data/weddingPlannerAssets'
 import './WeddingPlannerPage.css'
 
 export default function WeddingPlannerPage() {
+  const { heroVideo, heroImage } = loadWeddingPlannerAssets()
+
   return (
     <main className="wedding-planner-page">
       <section className="wedding-planner-page__hero">
-        <video
-          src={decorReel}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="wedding-planner-page__video"
-        />
+        {heroVideo ? (
+          <video
+            src={heroVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="wedding-planner-page__video"
+          />
+        ) : heroImage ? (
+          <img src={heroImage} alt="" className="wedding-planner-page__video" />
+        ) : null}
         <div className="wedding-planner-page__overlay" />
         <motion.div
           className="wedding-planner-page__content"

@@ -1,8 +1,52 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import ScrollReveal from '../common/ScrollReveal'
 import LazyImage from '../common/LazyImage'
 import './WorkGallery.css'
+
+function MobileCarousel({ items }) {
+  const [paused, setPaused] = useState(false)
+  const resumeTimerRef = useRef(null)
+
+  const clearResumeTimer = () => {
+    if (resumeTimerRef.current) {
+      clearTimeout(resumeTimerRef.current)
+      resumeTimerRef.current = null
+    }
+  }
+
+  const pauseBriefly = () => {
+    clearResumeTimer()
+    setPaused(true)
+    resumeTimerRef.current = setTimeout(() => setPaused(false), 3500)
+  }
+
+  useEffect(() => () => clearResumeTimer(), [])
+
+  if (!items.length) return null
+
+  const loopItems = [...items, ...items]
+
+  return (
+    <div className="work-gallery__mobile">
+      <div className="work-gallery__mobile-viewport">
+        <div
+          className={`work-gallery__mobile-track ${paused ? 'work-gallery__mobile-track--paused' : ''}`}
+          style={{ '--mobile-count': items.length }}
+          onTouchStart={pauseBriefly}
+        >
+          {loopItems.map((item, index) => (
+            <article key={`${item.id}-${index}`} className="work-gallery__mobile-card">
+              <div className="work-gallery__mobile-screen">
+                <LazyImage src={item.imageFull || item.image} alt="" />
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 function RingCarousel({ items }) {
   const [paused, setPaused] = useState(false)
@@ -30,9 +74,8 @@ function RingCarousel({ items }) {
               >
                 <div className="ring-carousel__phone">
                   <div className="ring-carousel__phone-screen">
-                    <LazyImage src={item.imageFull || item.image} alt={item.label} />
+                    <LazyImage src={item.imageFull || item.image} alt="" />
                   </div>
-                  <span className="ring-carousel__label">{item.label}</span>
                 </div>
               </div>
             ))}
@@ -62,10 +105,13 @@ export default function WorkGallery({ items }) {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
-          <RingCarousel items={items} />
+          <div className="work-gallery__desktop">
+            <RingCarousel items={items} />
+          </div>
+          <MobileCarousel items={items} />
         </motion.div>
 
-        <p className="work-gallery__hint">Hover to pause</p>
+        <p className="work-gallery__hint work-gallery__hint--desktop">Hover to pause</p>
 
         <ScrollReveal delay={0.3}>
           <p className="work-gallery__stat">
