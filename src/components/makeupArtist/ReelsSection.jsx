@@ -5,18 +5,22 @@ import './ReelsSection.css'
 
 function ReelCard({ reel, isPlaying, onPlay, onStop }) {
   const videoRef = useRef(null)
+  const previewTime = reel.previewTime ?? 0
 
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
 
     if (isPlaying) {
+      if (video.currentTime !== 0) {
+        video.currentTime = 0
+      }
       video.play().catch(() => {})
     } else {
       video.pause()
-      video.currentTime = 0
+      video.currentTime = previewTime
     }
-  }, [isPlaying])
+  }, [isPlaying, previewTime])
 
   return (
     <article className="reels-section__card">
@@ -38,10 +42,11 @@ function ReelCard({ reel, isPlaying, onPlay, onStop }) {
         <video
           ref={videoRef}
           src={reel.video}
+          poster={reel.poster}
           muted
           loop
           playsInline
-          preload="metadata"
+          preload={reel.poster ? 'none' : 'metadata'}
           className="reels-section__video"
         />
         <span className="reels-section__overlay" aria-hidden="true" />

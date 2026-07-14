@@ -24,6 +24,7 @@ import gallery9083Full from '../assets/makeup-artist/gallery/optimized/9083.jpg'
 import gallery9518Full from '../assets/makeup-artist/gallery/optimized/9518.jpg'
 import gallery9157Full from '../assets/makeup-artist/gallery/optimized/9157.jpg'
 import muaReel from '../assets/makeup-artist/compressed/mua-reel.mp4'
+import reelBeautyMaisonPoster from '../assets/makeup-artist/compressed/reels/beauty-maison-poster.jpg'
 import reel0671 from '../assets/makeup-artist/compressed/reels/img_0671.mp4'
 import reel0933 from '../assets/makeup-artist/compressed/reels/img_0933.mp4'
 
@@ -71,7 +72,13 @@ export const makeupArtistData = {
   },
 
   reels: [
-    { id: 1, video: muaReel, label: 'Beauty Maison' },
+    {
+      id: 1,
+      video: muaReel,
+      poster: reelBeautyMaisonPoster,
+      previewTime: 2,
+      label: 'Beauty Maison',
+    },
     { id: 2, video: reel0671, label: 'Bridal Moments' },
     { id: 3, video: reel0933, label: 'Glam Session' },
   ],
