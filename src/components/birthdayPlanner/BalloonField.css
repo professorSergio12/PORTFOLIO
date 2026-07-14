@@ -1,0 +1,23 @@
+.balloon-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 950;
+  overflow: visible;
+}
+
+.balloon-field__balloon {
+  position: absolute;
+  will-change: top, transform, opacity;
+  filter: drop-shadow(0 6px 14px rgba(74, 144, 184, 0.28));
+}
+
+.balloon-field__svg {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .balloon-field {
+    display: none;
+  }
+}

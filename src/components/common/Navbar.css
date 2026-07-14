@@ -23,6 +23,10 @@
   gap: 1rem;
 }
 
+.navbar--no-brand .navbar__inner {
+  justify-content: flex-end;
+}
+
 .navbar__links {
   display: flex;
   gap: 0.5rem;
@@ -80,6 +84,17 @@
 
 .navbar__link--wp .navbar__link-dot {
   background: var(--cream);
+}
+
+.navbar__link--bp.navbar__link--active,
+.navbar__link--bp:hover {
+  color: var(--white);
+  background: linear-gradient(135deg, #ff9ec4 0%, #7ec8e3 100%);
+  border-color: transparent;
+}
+
+.navbar__link--bp .navbar__link-dot {
+  background: var(--white);
 }
 
 .navbar__toggle {
@@ -143,10 +158,48 @@
 .navbar--scrolled .navbar__link--mua.navbar__link--active,
 .navbar--scrolled .navbar__link--mua:hover,
 .navbar--scrolled .navbar__link--wp.navbar__link--active,
-.navbar--scrolled .navbar__link--wp:hover {
+.navbar--scrolled .navbar__link--wp:hover,
+.navbar--scrolled .navbar__link--bp.navbar__link--active,
+.navbar--scrolled .navbar__link--bp:hover {
   color: var(--white);
   background: rgba(201, 169, 98, 0.25);
   border-color: rgba(201, 169, 98, 0.4);
+}
+
+.navbar--birthday:not(.navbar--scrolled) .navbar__link {
+  color: var(--bp-text, #3d4a5c);
+  border-color: rgba(126, 200, 227, 0.45);
+}
+
+.navbar--birthday:not(.navbar--scrolled) .navbar__link--bp.navbar__link--active,
+.navbar--birthday:not(.navbar--scrolled) .navbar__link--bp:hover {
+  color: var(--white);
+  background: linear-gradient(135deg, #ff9ec4 0%, #7ec8e3 100%);
+  border-color: transparent;
+}
+
+.navbar--birthday.navbar--scrolled {
+  background: rgba(255, 228, 240, 0.95);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 24px rgba(126, 200, 227, 0.2);
+}
+
+.navbar--birthday.navbar--scrolled .navbar__link {
+  color: var(--bp-text, #3d4a5c);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 158, 196, 0.35);
+  box-shadow: none;
+}
+
+.navbar--birthday.navbar--scrolled .navbar__link--bp.navbar__link--active,
+.navbar--birthday.navbar--scrolled .navbar__link--bp:hover {
+  color: var(--white);
+  background: linear-gradient(135deg, #ff9ec4 0%, #7ec8e3 100%);
+  border-color: transparent;
+}
+
+.navbar--birthday.navbar--scrolled .navbar__toggle span {
+  background: var(--bp-text, #3d4a5c);
 }
 
 .navbar--scrolled .navbar__toggle span {

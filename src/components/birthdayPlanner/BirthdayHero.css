@@ -1,0 +1,90 @@
+.birthday-hero {
+  position: relative;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.birthday-hero__media {
+  position: absolute;
+  inset: 0;
+}
+
+.birthday-hero__video,
+.birthday-hero__fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.birthday-hero__fallback {
+  background: linear-gradient(135deg, var(--bp-pink-light) 0%, var(--bp-blue-light) 100%);
+}
+
+.birthday-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 182, 217, 0.35) 0%,
+    rgba(126, 200, 227, 0.45) 50%,
+    rgba(61, 74, 92, 0.55) 100%
+  );
+}
+
+.birthday-hero__content {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  color: var(--white);
+  padding: 2rem clamp(1rem, 4vw, 2rem);
+  max-width: 720px;
+}
+
+.birthday-hero__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.75rem;
+}
+
+.birthday-hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  margin: 0 0 1rem;
+  text-shadow: 0 4px 24px rgba(74, 144, 184, 0.35);
+}
+
+.birthday-hero__tagline {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.65;
+}
+
+.birthday-hero__scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.birthday-hero__scroll-line {
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.5);
+  transform-origin: top;
+}

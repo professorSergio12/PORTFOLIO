@@ -22,17 +22,21 @@ export default function Navbar() {
   const links = [
     { to: '/makeup-artist', label: 'Makeup Artist', brand: 'mua' },
     { to: '/wedding-planner', label: 'Wedding Planner', brand: 'wp' },
+    { to: '/birthday-planner', label: 'Party Blowers', brand: 'bp' },
   ]
+
+  const isBirthdayPage = location.pathname === '/birthday-planner'
+  const isMakeupArtistPage = location.pathname === '/makeup-artist'
 
   return (
     <motion.header
-      className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
+      className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${isBirthdayPage ? 'navbar--birthday' : ''} ${!isMakeupArtistPage ? 'navbar--no-brand' : ''}`}
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="navbar__inner">
-        <BrandLogo />
+        {isMakeupArtistPage && <BrandLogo />}
 
         <nav className="navbar__links">
           {links.map((link) => (

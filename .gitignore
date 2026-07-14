@@ -13,6 +13,8 @@ src/assets/**/raw/
 src/assets/**/*.mp4
 !src/assets/**/compressed/*.mp4
 !src/assets/**/compressed/**/*.mp4
+!src/assets/birthday-planner/*.mp4
+!src/assets/birthday-planner/**/*.mp4
 
 # Build output
 dist

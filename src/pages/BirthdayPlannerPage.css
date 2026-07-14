@@ -1,0 +1,16 @@
+.birthday-planner-page {
+  --bp-pink: #ff9ec4;
+  --bp-pink-light: #ffe4f0;
+  --bp-blue: #7ec8e3;
+  --bp-blue-light: #d4f1f9;
+  --bp-blue-deep: #4a90b8;
+  --bp-text: #3d4a5c;
+
+  position: relative;
+  background: var(--white);
+  color: var(--bp-text);
+}
+
+.birthday-planner-page .section-label {
+  color: var(--bp-blue-deep);
+}
