@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import ScrollReveal from '../common/ScrollReveal'
 import './EventAbout.css'
 
@@ -15,19 +14,6 @@ export default function EventAbout({ about }) {
             </p>
           ))}
         </ScrollReveal>
-
-        <motion.div
-          className="event-about__decor"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          aria-hidden="true"
-        >
-          <span className="event-about__orb event-about__orb--pink" />
-          <span className="event-about__orb event-about__orb--blue" />
-          <span className="event-about__icon">🎈</span>
-        </motion.div>
       </div>
     </section>
   )
