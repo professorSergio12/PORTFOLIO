@@ -1,22 +1,19 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import LazyImage from '../common/LazyImage'
 import ScrollReveal from '../common/ScrollReveal'
-import { slideFromLeft, slideFromRight, weddingEase } from '../../utils/weddingMotion'
+import { imageReveal, weddingEase } from '../../utils/weddingMotion'
 import './DecorShowcase.css'
+
+const DECOR_LAYOUTS = ['wide', 'portrait', 'square', 'landscape']
+
+function getDecorLayout(index) {
+  return DECOR_LAYOUTS[index % DECOR_LAYOUTS.length]
+}
 
 export default function DecorShowcase({ section }) {
   const items = section.items ?? []
-  const layoutRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: layoutRef,
-    offset: ['start end', 'end start'],
-  })
-  const featuredY = useTransform(scrollYProgress, [0, 1], [20, -20])
 
   if (!items.length) return null
-
-  const [featured, ...rest] = items
 
   return (
     <section id="decor" className="decor-showcase">
@@ -27,34 +24,18 @@ export default function DecorShowcase({ section }) {
           <p className="decor-showcase__intro">{section.intro}</p>
         </ScrollReveal>
 
-        <div className="decor-showcase__layout" ref={layoutRef}>
-          <motion.div
-            className="decor-showcase__featured"
-            style={{ y: featuredY }}
-            {...slideFromLeft}
-            transition={{ duration: 0.75, ease: weddingEase }}
-          >
-            <img
-              src={featured.imageFull || featured.image}
-              alt=""
-              loading="eager"
-              decoding="async"
-            />
-          </motion.div>
-
-          <div className="decor-showcase__grid">
-            {rest.map((item, index) => (
-              <motion.div
-                key={item.id}
-                className="decor-showcase__item"
-                {...slideFromRight}
-                transition={{ duration: 0.65, delay: index * 0.08, ease: weddingEase }}
-                whileHover={{ y: -4, scale: 1.02 }}
-              >
-                <LazyImage src={item.image} alt="" />
-              </motion.div>
-            ))}
-          </div>
+        <div className="decor-showcase__layout">
+          {items.map((item, index) => (
+            <motion.div
+              key={item.id}
+              className={`decor-showcase__item decor-showcase__item--${getDecorLayout(index)}`}
+              {...imageReveal}
+              transition={{ duration: 0.55, delay: index * 0.06, ease: weddingEase }}
+              whileHover={{ scale: 1.02, y: -3 }}
+            >
+              <LazyImage src={item.imageFull || item.image} alt="" className="decor-showcase__lazy" />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -20,17 +20,21 @@ export default function Navbar() {
   }, [location.pathname])
 
   const links = [
+    { to: '/', label: 'Home', brand: 'home' },
     { to: '/makeup-artist', label: 'Makeup Artist', brand: 'mua' },
     { to: '/wedding-planner', label: 'Wedding Planner', brand: 'wp' },
     { to: '/birthday-planner', label: 'Party Blowers', brand: 'bp' },
   ]
 
+  const isHomePage = location.pathname === '/'
   const isBirthdayPage = location.pathname === '/birthday-planner'
   const isMakeupArtistPage = location.pathname === '/makeup-artist'
 
+  if (isHomePage) return null
+
   return (
     <motion.header
-      className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${isBirthdayPage ? 'navbar--birthday' : ''} ${!isMakeupArtistPage ? 'navbar--no-brand' : ''}`}
+      className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${isBirthdayPage ? 'navbar--birthday' : ''} ${isHomePage ? 'navbar--home' : ''} ${!isMakeupArtistPage ? 'navbar--no-brand' : ''}`}
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}

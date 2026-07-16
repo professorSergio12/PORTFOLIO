@@ -34,13 +34,17 @@
   overflow: hidden;
   margin-bottom: clamp(2rem, 4vw, 3rem);
   box-shadow: 0 28px 60px rgba(0, 0, 0, 0.35);
+  min-height: clamp(220px, 32vw, 380px);
+  background: rgba(0, 0, 0, 0.25);
 }
 
 .first-impression__hero-img {
   width: 100%;
   aspect-ratio: 21 / 9;
+  min-height: clamp(220px, 32vw, 380px);
   object-fit: cover;
   display: block;
+  background: rgba(61, 44, 44, 0.4);
 }
 
 .first-impression__hero-caption {
@@ -132,7 +136,43 @@
 }
 
 @media (max-width: 768px) {
+  .first-impression {
+    padding: var(--section-padding) clamp(0.85rem, 2vw, 1.25rem);
+  }
+
+  .first-impression__hero {
+    border-radius: 18px;
+    min-height: clamp(200px, 45vw, 280px);
+  }
+
   .first-impression__hero-img {
     aspect-ratio: 4 / 3;
+    min-height: clamp(200px, 45vw, 280px);
+  }
+
+  .first-impression__card {
+    width: clamp(180px, 38vw, 240px);
+  }
+}
+
+@media (max-width: 480px) {
+  .first-impression__header {
+    margin-bottom: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .first-impression__hero-caption {
+    padding: 1rem;
+  }
+
+  .first-impression__hero-caption p {
+    font-size: clamp(1rem, 4vw, 1.15rem);
+  }
+
+  .first-impression__card {
+    width: clamp(150px, 52vw, 200px);
+  }
+
+  .first-impression__marquee-track {
+    gap: 0.75rem;
   }
 }

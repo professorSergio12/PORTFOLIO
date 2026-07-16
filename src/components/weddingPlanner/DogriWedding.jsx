@@ -6,7 +6,7 @@ import EventReels from '../birthdayPlanner/EventReels'
 import { imageReveal, weddingEase } from '../../utils/weddingMotion'
 import './DogriWedding.css'
 
-const GALLERY_LAYOUTS = ['portrait', 'landscape', 'landscape', 'wide', 'portrait', 'landscape']
+const GALLERY_LAYOUTS = ['portrait', 'landscape', 'portrait', 'landscape', 'tall', 'square', 'landscape', 'portrait']
 
 function getGalleryLayout(index) {
   return GALLERY_LAYOUTS[index % GALLERY_LAYOUTS.length]
@@ -57,10 +57,10 @@ export default function DogriWedding({ section }) {
                 key={`${item.id}-${item.name}`}
                 className={`dogri-wedding__item dogri-wedding__item--${getGalleryLayout(index)}`}
                 {...imageReveal}
-                transition={{ duration: 0.6, delay: (index % 5) * 0.05, ease: weddingEase }}
-                whileHover={{ scale: 1.02, y: -3 }}
+                transition={{ duration: 0.55, delay: (index % 6) * 0.04, ease: weddingEase }}
+                whileHover={{ scale: 1.03, y: -2 }}
               >
-                <LazyImage src={item.image} alt="" className="dogri-wedding__lazy" />
+                <LazyImage src={item.imageFull || item.image} alt="" className="dogri-wedding__lazy" />
               </motion.div>
             ))}
           </div>

@@ -10,7 +10,7 @@ function MarqueeRow({ photos, reverse = false }) {
       <div className="wedding-marquee__track">
         {loop.map((photo, index) => (
           <div key={`${photo.id}-${index}`} className="wedding-marquee__frame">
-            <img src={photo.image || photo.imageFull} alt="" loading="lazy" decoding="async" />
+            <img src={photo.imageFull || photo.image} alt="" loading="lazy" decoding="async" />
           </div>
         ))}
       </div>

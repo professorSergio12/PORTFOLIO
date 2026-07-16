@@ -1,23 +1,87 @@
 .wedding-services {
-  padding: var(--section-padding) clamp(1.25rem, 4vw, 3rem);
-  background: var(--wp-wine);
+  position: relative;
+  padding: var(--section-padding) clamp(0.85rem, 2vw, 1.25rem);
+  background: linear-gradient(155deg, #4a2424 0%, var(--wp-wine) 42%, #3d1f1f 100%);
   color: var(--white);
+  overflow: hidden;
+}
+
+.wedding-services__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.wedding-services__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.45;
+  animation: wedding-services-float 14s ease-in-out infinite alternate;
+}
+
+.wedding-services__orb--1 {
+  width: min(420px, 55vw);
+  height: min(420px, 55vw);
+  top: -12%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(212, 184, 122, 0.35) 0%, transparent 70%);
+}
+
+.wedding-services__orb--2 {
+  width: min(360px, 48vw);
+  height: min(360px, 48vw);
+  bottom: -15%;
+  right: -6%;
+  background: radial-gradient(circle, rgba(232, 213, 207, 0.22) 0%, transparent 70%);
+  animation-delay: -4s;
+  animation-duration: 18s;
+}
+
+.wedding-services__orb--3 {
+  width: min(280px, 38vw);
+  height: min(280px, 38vw);
+  top: 40%;
+  left: 45%;
+  background: radial-gradient(circle, rgba(184, 148, 63, 0.2) 0%, transparent 70%);
+  animation-delay: -7s;
+  animation-duration: 16s;
+}
+
+@keyframes wedding-services-float {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(18px, -14px) scale(1.08);
+  }
 }
 
 .wedding-services__inner {
+  position: relative;
+  z-index: 1;
   max-width: var(--container-width);
   margin: 0 auto;
 }
 
 .wedding-services__header {
   text-align: center;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+  max-width: 640px;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
 }
 
 .wedding-services__title {
   font-size: clamp(2rem, 4vw, 3rem);
   color: var(--white);
   margin-top: 0.75rem;
+}
+
+.wedding-services__subtitle {
+  margin: 1rem auto 0;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.68);
 }
 
 .wedding-services__grid {
@@ -28,17 +92,124 @@
 }
 
 .wedding-services__card {
+  position: relative;
   padding: clamp(1.35rem, 3vw, 1.85rem);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(212, 184, 122, 0.22);
-  backdrop-filter: blur(6px);
+  border-radius: 22px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  border: 1px solid rgba(212, 184, 122, 0.28);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
   transform-style: preserve-3d;
-  transition: box-shadow 0.35s ease;
+  transition:
+    box-shadow 0.4s var(--transition-smooth),
+    border-color 0.4s var(--transition-smooth);
+}
+
+.wedding-services__card:nth-child(1) {
+  background: linear-gradient(145deg, rgba(212, 184, 122, 0.14) 0%, rgba(255, 255, 255, 0.05) 100%);
+}
+
+.wedding-services__card:nth-child(2) {
+  background: linear-gradient(145deg, rgba(232, 213, 207, 0.1) 0%, rgba(255, 255, 255, 0.04) 100%);
+}
+
+.wedding-services__card:nth-child(3) {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(184, 148, 63, 0.08) 100%);
+}
+
+.wedding-services__card:nth-child(4) {
+  background: linear-gradient(145deg, rgba(212, 184, 122, 0.1) 0%, rgba(232, 213, 207, 0.06) 100%);
 }
 
 .wedding-services__card:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+  border-color: rgba(212, 184, 122, 0.55);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.28),
+    0 0 0 1px rgba(212, 184, 122, 0.15);
+}
+
+.wedding-services__card-glow {
+  position: absolute;
+  top: -35%;
+  right: -15%;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 184, 122, 0.35) 0%, transparent 70%);
+  pointer-events: none;
+  transition: transform 0.5s var(--transition-smooth), opacity 0.5s ease;
+}
+
+.wedding-services__card:hover .wedding-services__card-glow {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.wedding-services__card-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s var(--transition-smooth);
+  pointer-events: none;
+}
+
+.wedding-services__card:hover .wedding-services__card-shine {
+  transform: translateX(120%);
+}
+
+.wedding-services__watermark {
+  position: absolute;
+  right: 1rem;
+  bottom: -0.5rem;
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 8vw, 5rem);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+  user-select: none;
+}
+
+.wedding-services__card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  position: relative;
+  z-index: 1;
+}
+
+.wedding-services__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(212, 184, 122, 0.15);
+  border: 1px solid rgba(212, 184, 122, 0.35);
+  color: var(--wp-gold-light);
+  transition:
+    transform 0.4s var(--transition-smooth),
+    background 0.4s ease;
+}
+
+.wedding-services__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.wedding-services__card:hover .wedding-services__icon {
+  transform: rotate(-6deg) scale(1.06);
+  background: rgba(212, 184, 122, 0.25);
 }
 
 .wedding-services__index {
@@ -48,19 +219,57 @@
 }
 
 .wedding-services__card h3 {
+  position: relative;
+  z-index: 1;
   font-size: clamp(1.1rem, 2vw, 1.3rem);
-  margin: 0.65rem 0 0.75rem;
+  margin: 0 0 0.75rem;
   color: var(--white);
 }
 
 .wedding-services__card p {
+  position: relative;
+  z-index: 1;
   font-size: 0.9rem;
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+.wedding-services__card-line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(to right, var(--wp-gold-light), var(--wp-gold));
+  border-radius: 0 3px 0 22px;
+  transition: width 0.45s var(--transition-smooth);
+}
+
+.wedding-services__card:hover .wedding-services__card-line {
+  width: 100%;
 }
 
 @media (max-width: 768px) {
   .wedding-services__grid {
     grid-template-columns: 1fr;
+  }
+
+  .wedding-services__card {
+    border-radius: 18px;
+  }
+
+  .wedding-services__orb {
+    opacity: 0.3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wedding-services__orb {
+    animation: none;
+  }
+
+  .wedding-services__card-shine {
+    display: none;
   }
 }

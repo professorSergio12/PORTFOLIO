@@ -35,8 +35,12 @@ async function walkOptimized(dir, results = []) {
 }
 
 async function writeVariant(inputPath, folder, pipeline) {
-  const parent = path.dirname(inputPath)
-  const outDir = path.join(parent, folder)
+  const optimizedDir = path.dirname(inputPath)
+  const albumDir =
+    path.basename(optimizedDir).toLowerCase() === 'optimized'
+      ? path.dirname(optimizedDir)
+      : optimizedDir
+  const outDir = path.join(albumDir, folder)
   await mkdir(outDir, { recursive: true })
 
   const outName = `${path.basename(inputPath, path.extname(inputPath))}.jpg`

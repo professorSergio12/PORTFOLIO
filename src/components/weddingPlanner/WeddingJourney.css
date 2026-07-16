@@ -161,6 +161,10 @@
 }
 
 @media (max-width: 900px) {
+  .wedding-journey {
+    padding: var(--section-padding) clamp(0.85rem, 2vw, 1.25rem);
+  }
+
   .wedding-journey__body {
     grid-template-columns: 1fr;
   }
@@ -174,5 +178,36 @@
   .wedding-journey__secondary {
     right: -0.5rem;
     bottom: 3.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wedding-journey__portrait-wrap {
+    max-width: 100%;
+  }
+
+  .wedding-journey__portrait-frame {
+    border-radius: 20px;
+    min-height: unset;
+  }
+
+  .wedding-journey__portrait {
+    border-radius: 16px;
+  }
+
+  .wedding-journey__secondary {
+    right: 0.5rem;
+    bottom: 2.5rem;
+    width: clamp(88px, 26%, 110px);
+  }
+
+  .wedding-journey__step {
+    gap: 0.75rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .wedding-journey__step-content p {
+    max-width: none;
+    font-size: 0.88rem;
   }
 }

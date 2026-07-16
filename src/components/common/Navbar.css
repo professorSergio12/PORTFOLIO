@@ -59,6 +59,17 @@
   transition: opacity 0.3s ease;
 }
 
+.navbar__link--home.navbar__link--active,
+.navbar__link--home:hover {
+  color: var(--white);
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.navbar__link--home .navbar__link-dot {
+  background: var(--burgundy);
+}
+
 .navbar__link--mua.navbar__link--active,
 .navbar__link--mua:hover {
   color: var(--white);
@@ -164,6 +175,10 @@
   color: var(--white);
   background: rgba(201, 169, 98, 0.25);
   border-color: rgba(201, 169, 98, 0.4);
+}
+
+.navbar--home:not(.navbar--scrolled) .navbar__link {
+  background: rgba(255, 255, 255, 0.88);
 }
 
 .navbar--birthday:not(.navbar--scrolled) .navbar__link {

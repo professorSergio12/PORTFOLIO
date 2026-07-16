@@ -1,0 +1,20 @@
+.home-page {
+  background: var(--cream);
+  color: var(--charcoal);
+  overflow-x: hidden;
+}
+
+.home-page .section-label {
+  color: var(--gold);
+}
+
+.home-page .home-member--wedding .section-label {
+  color: var(--wp-gold, #b8943f);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page .home-hero__orb,
+  .home-page .home-photo-strip__track {
+    animation: none !important;
+  }
+}

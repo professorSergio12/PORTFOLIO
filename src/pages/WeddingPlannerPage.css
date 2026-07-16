@@ -19,7 +19,20 @@
   .wedding-planner-page .wedding-hero__video,
   .wedding-planner-page .wedding-hero__sparkle,
   .wedding-planner-page .first-impression__marquee-track,
-  .wedding-planner-page .wedding-marquee__track {
+  .wedding-planner-page .wedding-marquee__track,
+  .wedding-planner-page .wedding-services__orb {
     animation: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .wedding-planner-page {
+    --section-padding: clamp(3rem, 8vw, 5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .wedding-planner-page {
+    --section-padding: clamp(2.5rem, 7vw, 3.5rem);
   }
 }

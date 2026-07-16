@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import LazyImage from '../common/LazyImage'
+import { useEffect } from 'react'
 import ScrollReveal from '../common/ScrollReveal'
-import { clipRevealUp, weddingEase } from '../../utils/weddingMotion'
+import { weddingEase } from '../../utils/weddingMotion'
 import './FirstImpression.css'
 
 const CARD_LABELS = ['Signage', 'Photobooth', 'Entry Styling', 'Welcome Décor', 'Mirror Sign', 'Guest Experience']
@@ -9,6 +9,18 @@ const CARD_LABELS = ['Signage', 'Photobooth', 'Entry Styling', 'Welcome Décor',
 export default function FirstImpression({ section }) {
   const items = section.items ?? []
   const loopItems = items.length ? [...items, ...items] : []
+
+  useEffect(() => {
+    if (!section.hero) return
+    const link = document.createElement('link')
+    link.rel = 'preload'
+    link.as = 'image'
+    link.href = section.hero
+    document.head.appendChild(link)
+    return () => {
+      document.head.removeChild(link)
+    }
+  }, [section.hero])
 
   return (
     <section id="first-impression" className="first-impression">
@@ -22,14 +34,17 @@ export default function FirstImpression({ section }) {
         {section.hero ? (
           <motion.div
             className="first-impression__hero"
-            {...clipRevealUp}
-            transition={{ duration: 0.8, ease: weddingEase }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.65, ease: weddingEase }}
           >
             <img
               src={section.hero}
               alt=""
               className="first-impression__hero-img"
               loading="eager"
+              fetchPriority="high"
               decoding="async"
             />
             <div className="first-impression__hero-caption">
@@ -47,14 +62,19 @@ export default function FirstImpression({ section }) {
                   <motion.article
                     key={`${item.id}-${index}`}
                     className="first-impression__card"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-20px' }}
-                    transition={{ duration: 0.5, delay: (index % items.length) * 0.05, ease: weddingEase }}
+                    transition={{ duration: 0.45, delay: (index % items.length) * 0.04, ease: weddingEase }}
                     whileHover={{ y: -6, scale: 1.02 }}
                   >
                     <div className="first-impression__card-image">
-                      <LazyImage src={item.image} alt="" />
+                      <img
+                        src={item.imageFull || item.image}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
                     <p className="first-impression__card-label">
                       {CARD_LABELS[index % items.length] ?? 'Styling'}

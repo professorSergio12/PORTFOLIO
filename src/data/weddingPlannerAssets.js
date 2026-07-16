@@ -74,8 +74,8 @@ function toGalleryItem(entry, index, thumbs, displays) {
   return {
     id: index + 1,
     name: entry.name,
-    image: urls.thumb,
-    imageFull: urls.display,
+    image: urls.display ?? urls.full,
+    imageFull: urls.full,
     label: entry.name,
   }
 }
@@ -157,14 +157,18 @@ export function loadWeddingPlannerAssets() {
       toGalleryItem(entry, index, thumbEntries, displayEntries),
     ),
     firstImpression: {
-      hero: welcomeHeroUrls.display ?? welcomeHeroUrls.thumb,
+      hero:
+        welcomeHeroUrls.full ??
+        welcomeHeroUrls.display ??
+        welcomeHeroEntry?.url ??
+        null,
       items: photobooth.map((entry, index) => toGalleryItem(entry, index, thumbEntries, displayEntries)),
     },
     dogriWedding: {
       featured: dogriFeaturedEntry
         ? {
-            image: dogriFeaturedUrls.display ?? dogriFeaturedUrls.thumb,
-            imageFull: dogriFeaturedUrls.display ?? dogriFeaturedUrls.full,
+            image: dogriFeaturedUrls.display ?? dogriFeaturedUrls.full,
+            imageFull: dogriFeaturedUrls.full,
             label: 'Celebration',
           }
         : null,

@@ -157,3 +157,37 @@
   background: linear-gradient(to bottom, transparent, var(--wp-gold-light), transparent);
   transform-origin: top;
 }
+
+@media (max-width: 768px) {
+  .wedding-hero {
+    min-height: 520px;
+  }
+
+  .wedding-hero__content {
+    padding: 1.5rem clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .wedding-hero__tagline {
+    font-size: clamp(0.88rem, 3.5vw, 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .wedding-hero {
+    min-height: 460px;
+  }
+
+  .wedding-hero__scroll {
+    bottom: 1.25rem;
+    font-size: 0.55rem;
+  }
+
+  .wedding-hero__scroll-line {
+    height: 32px;
+  }
+
+  .wedding-hero__ornament {
+    width: min(160px, 50vw);
+    margin-bottom: 1rem;
+  }
+}
