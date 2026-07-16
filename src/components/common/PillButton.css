@@ -44,3 +44,15 @@
   background: var(--burgundy);
   color: var(--white);
 }
+
+.pill-button--wedding {
+  border: 1.5px solid var(--wp-wine, #5c2e2e);
+  color: var(--wp-wine, #5c2e2e);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.pill-button--wedding:hover {
+  background: var(--wp-wine, #5c2e2e);
+  color: var(--white);
+  border-color: var(--wp-wine, #5c2e2e);
+}

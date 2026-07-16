@@ -14,7 +14,8 @@ export default function ContactSection({ contact, tone = 'cream' }) {
   ]
     .filter(Boolean)
     .join(' ')
-  const ctaVariant = tone === 'cream' ? 'cream' : 'outline'
+  const ctaVariant =
+    tone === 'wedding' ? 'wedding' : tone === 'cream' ? 'cream' : 'outline'
 
   return (
     <section id="contact" className={sectionClass}>
