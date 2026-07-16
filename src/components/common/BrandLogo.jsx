@@ -27,12 +27,26 @@ function BrandIcon() {
   )
 }
 
-export default function BrandLogo({ to = '/makeup-artist' }) {
+export default function BrandLogo({ to = '/', variant = 'site' }) {
+  const isMakeup = variant === 'makeup'
+
   return (
-    <Link to={to} className="brand-logo" aria-label="Beauty Maison by Mannat Vig">
+    <Link
+      to={to}
+      className="brand-logo"
+      aria-label={isMakeup ? 'Beauty Maison by Mannat Vig — Home' : 'Go to home page'}
+    >
       <BrandIcon />
       <span className="brand-logo__text">
-        Beauty Maison <span className="brand-logo__by">by Mannat Vig</span>
+        {isMakeup ? (
+          <>
+            Beauty Maison <span className="brand-logo__by">by Mannat Vig</span>
+          </>
+        ) : (
+          <>
+            Celebrations <span className="brand-logo__by">Home</span>
+          </>
+        )}
       </span>
     </Link>
   )

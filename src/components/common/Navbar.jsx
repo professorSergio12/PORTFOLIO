@@ -34,13 +34,13 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${isBirthdayPage ? 'navbar--birthday' : ''} ${isHomePage ? 'navbar--home' : ''} ${!isMakeupArtistPage ? 'navbar--no-brand' : ''}`}
+      className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${isBirthdayPage ? 'navbar--birthday' : ''}`}
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="navbar__inner">
-        {isMakeupArtistPage && <BrandLogo />}
+        <BrandLogo to="/" variant={isMakeupArtistPage ? 'makeup' : 'site'} />
 
         <nav className="navbar__links">
           {links.map((link) => (

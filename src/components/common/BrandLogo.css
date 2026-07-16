@@ -37,9 +37,18 @@
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
 }
 
+.navbar--birthday:not(.navbar--scrolled) .brand-logo {
+  color: var(--bp-text, #3d4a5c);
+  text-shadow: none;
+}
+
 .navbar--scrolled .brand-logo {
   color: var(--white);
   text-shadow: none;
+}
+
+.navbar--birthday.navbar--scrolled .brand-logo {
+  color: var(--bp-text, #3d4a5c);
 }
 
 @media (max-width: 768px) {

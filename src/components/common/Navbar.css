@@ -23,10 +23,6 @@
   gap: 1rem;
 }
 
-.navbar--no-brand .navbar__inner {
-  justify-content: flex-end;
-}
-
 .navbar__links {
   display: flex;
   gap: 0.5rem;
@@ -166,6 +162,8 @@
   box-shadow: none;
 }
 
+.navbar--scrolled .navbar__link--home.navbar__link--active,
+.navbar--scrolled .navbar__link--home:hover,
 .navbar--scrolled .navbar__link--mua.navbar__link--active,
 .navbar--scrolled .navbar__link--mua:hover,
 .navbar--scrolled .navbar__link--wp.navbar__link--active,
@@ -234,6 +232,10 @@
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    padding: 1rem clamp(0.85rem, 2vw, 1.25rem);
+  }
+
   .navbar__links {
     display: none;
   }

@@ -3,6 +3,7 @@ import HomeHero from '../components/home/HomeHero'
 import HomePhotoStrip from '../components/home/HomePhotoStrip'
 import HomePortals from '../components/home/HomePortals'
 import HomeMemberSpotlight from '../components/home/HomeMemberSpotlight'
+import HomeFooter from '../components/home/HomeFooter'
 import './HomePage.css'
 
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
       <HomePortals portals={data.portals} />
       <HomeMemberSpotlight member={data.weddingSpotlight} tone="wedding" />
       <HomeMemberSpotlight member={data.makeupSpotlight} tone="makeup" />
+      <HomeFooter footer={data.footer} />
     </main>
   )
 }

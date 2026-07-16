@@ -1,0 +1,103 @@
+.home-footer {
+  padding: clamp(3rem, 7vw, 4.5rem) clamp(0.85rem, 2vw, 1.25rem) clamp(2rem, 5vw, 3rem);
+  background: linear-gradient(180deg, var(--cream) 0%, #ebe0d4 100%);
+  border-top: 1px solid rgba(91, 13, 21, 0.08);
+}
+
+.home-footer__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-footer__title {
+  font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+  color: var(--burgundy);
+  margin: 0.75rem 0 1.75rem;
+}
+
+.home-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.home-footer__link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: min(100%, 280px);
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  text-decoration: none;
+  color: var(--charcoal);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(91, 13, 21, 0.1);
+  box-shadow: 0 8px 24px rgba(91, 13, 21, 0.08);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.home-footer__link:hover {
+  transform: translateY(-4px);
+  border-color: rgba(184, 148, 63, 0.4);
+  box-shadow: 0 14px 32px rgba(91, 13, 21, 0.12);
+}
+
+.home-footer__link-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.home-footer__link-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.home-footer__link-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  text-align: left;
+}
+
+.home-footer__link-text strong {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--burgundy);
+}
+
+.home-footer__link-text span:last-child {
+  font-size: 0.82rem;
+  color: rgba(26, 26, 26, 0.62);
+}
+
+.home-footer__copy {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: rgba(26, 26, 26, 0.45);
+}
+
+@media (max-width: 640px) {
+  .home-footer__links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .home-footer__link {
+    min-width: 0;
+    width: 100%;
+  }
+}

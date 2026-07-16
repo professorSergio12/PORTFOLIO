@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from './components/common/Navbar'
 import ScrollToTop from './components/common/ScrollToTop'
 import HomePage from './pages/HomePage'
@@ -16,6 +16,7 @@ export default function App() {
         <Route path="/makeup-artist" element={<MakeupArtistPage />} />
         <Route path="/wedding-planner" element={<WeddingPlannerPage />} />
         <Route path="/birthday-planner" element={<BirthdayPlannerPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   )

@@ -88,3 +88,23 @@
   background: rgba(255, 255, 255, 0.5);
   transform-origin: top;
 }
+
+@media (max-width: 768px) {
+  .birthday-hero {
+    min-height: 520px;
+  }
+
+  .birthday-hero__content {
+    padding: 1.5rem clamp(0.85rem, 2vw, 1.25rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .birthday-hero {
+    min-height: 460px;
+  }
+
+  .birthday-hero__scroll {
+    bottom: 1.25rem;
+  }
+}

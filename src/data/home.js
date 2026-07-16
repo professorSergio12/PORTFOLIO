@@ -90,4 +90,20 @@ export const homeData = {
     ],
     cta: { label: 'View Makeup Portfolio', to: '/makeup-artist' },
   },
+
+  footer: {
+    copyright: '© 2026 — Celebrations · Makeup · Wedding · Events',
+    instagram: [
+      {
+        label: 'Wedding Planner',
+        handle: '@_malai.kaaa_',
+        url: 'https://www.instagram.com/_malai.kaaa_?igsh=Y2VvY3ZqbXp3bDhl',
+      },
+      {
+        label: 'Beauty Maison by Mannat Vig',
+        handle: '@beautymaisonbymannat_',
+        url: 'https://www.instagram.com/beautymaisonbymannat_?igsh=anJzZGx2aDFnZDRj',
+      },
+    ],
+  },
 }

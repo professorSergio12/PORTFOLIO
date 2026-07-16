@@ -1,5 +1,5 @@
 .event-gallery {
-  padding: var(--section-padding) clamp(1rem, 3vw, 2rem);
+  padding: var(--section-padding) clamp(0.85rem, 2vw, 1.25rem);
   background: var(--white);
 }
 

@@ -43,33 +43,35 @@ export default function WeddingJourney({ journey }) {
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.65, ease: weddingEase }}
             >
-              <div className="wedding-journey__portrait-frame">
-                <img
-                  src={journey.portrait}
-                  alt=""
-                  className="wedding-journey__portrait"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                />
-              </div>
-
-              {journey.secondaryPortrait ? (
-                <motion.div
-                  className="wedding-journey__secondary"
-                  initial={{ opacity: 0, scale: 0.94 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.55, delay: 0.15, ease: weddingEase }}
-                >
+              <div className="wedding-journey__portrait-stack">
+                <div className="wedding-journey__portrait-frame">
                   <img
-                    src={journey.secondaryPortrait}
+                    src={journey.portrait}
                     alt=""
+                    className="wedding-journey__portrait"
                     loading="eager"
+                    fetchPriority="high"
                     decoding="async"
                   />
-                </motion.div>
-              ) : null}
+                </div>
+
+                {journey.secondaryPortrait ? (
+                  <motion.div
+                    className="wedding-journey__secondary"
+                    initial={{ opacity: 0, scale: 0.94 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.55, delay: 0.15, ease: weddingEase }}
+                  >
+                    <img
+                      src={journey.secondaryPortrait}
+                      alt=""
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </motion.div>
+                ) : null}
+              </div>
 
               <blockquote className="wedding-journey__quote">
                 &ldquo;{journey.quote}&rdquo;

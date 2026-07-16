@@ -81,3 +81,31 @@
   background: var(--gold);
   transform-origin: top;
 }
+
+@media (max-width: 768px) {
+  .hero-video {
+    min-height: 520px;
+  }
+
+  .hero-video__content {
+    padding: 0 1rem 6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-video {
+    min-height: 460px;
+  }
+
+  .hero-video__content {
+    padding-bottom: 5rem;
+  }
+
+  .hero-video__scroll {
+    bottom: 1.5rem;
+  }
+
+  .hero-video__scroll-line {
+    height: 36px;
+  }
+}
