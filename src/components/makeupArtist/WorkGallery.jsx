@@ -34,13 +34,13 @@ function MobileCarousel({ items }) {
       if (maxScroll <= 0) return
 
       if (track.scrollLeft >= maxScroll - 8) {
-        track.scrollTo({ left: 0, behavior: 'smooth' })
+        track.scrollTo({ left: 0, behavior: 'auto' })
       } else {
-        track.scrollBy({ left: step, behavior: 'smooth' })
+        track.scrollBy({ left: step, behavior: 'auto' })
       }
     }
 
-    const interval = setInterval(tick, 3200)
+    const interval = setInterval(tick, 2000)
     return () => clearInterval(interval)
   }, [items.length])
 
@@ -48,7 +48,7 @@ function MobileCarousel({ items }) {
     const track = trackRef.current
     if (!track) return
 
-    const onScroll = () => pauseAutoScroll(4500)
+    const onScroll = () => pauseAutoScroll(3000)
 
     track.addEventListener('scroll', onScroll, { passive: true })
     return () => {
@@ -65,7 +65,7 @@ function MobileCarousel({ items }) {
         <div
           ref={trackRef}
           className="work-gallery__mobile-track"
-          onTouchStart={() => pauseAutoScroll(5000)}
+          onTouchStart={() => pauseAutoScroll(3500)}
         >
           {items.map((item) => (
             <article key={item.id} className="work-gallery__mobile-card">
