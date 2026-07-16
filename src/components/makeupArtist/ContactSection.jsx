@@ -7,10 +7,14 @@ export default function ContactSection({ contact, tone = 'cream' }) {
   const sideImages = contact.sideImages ?? []
   const ctaLabel = contact.cta ?? 'Book a Session'
   const footerText = contact.footer ?? '© 2026 — Makeup Artist & Wedding Planner'
-  const sectionClass = ['contact-section', tone === 'burgundy' ? 'contact-section--burgundy' : '']
+  const sectionClass = [
+    'contact-section',
+    tone === 'burgundy' ? 'contact-section--burgundy' : '',
+    tone === 'wedding' ? 'contact-section--wedding' : '',
+  ]
     .filter(Boolean)
     .join(' ')
-  const ctaVariant = tone === 'burgundy' ? 'outline' : 'cream'
+  const ctaVariant = tone === 'cream' ? 'cream' : 'outline'
 
   return (
     <section id="contact" className={sectionClass}>

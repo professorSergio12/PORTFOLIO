@@ -1,57 +1,25 @@
-.wedding-planner-page__hero {
-  position: relative;
-  height: 100svh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+.wedding-planner-page {
+  --wp-champagne: #f7f0e8;
+  --wp-ivory: #fdfbf7;
+  --wp-gold: #b8943f;
+  --wp-gold-light: #d4b87a;
+  --wp-espresso: #3d2c2c;
+  --wp-wine: #5c2e2e;
+  --wp-blush: #e8d5cf;
+
+  background: var(--wp-ivory);
+  color: var(--wp-espresso);
 }
 
-.wedding-planner-page__video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.wedding-planner-page .section-label {
+  color: var(--wp-gold);
 }
 
-.wedding-planner-page__overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(59, 8, 14, 0.7);
-}
-
-.wedding-planner-page__content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  color: var(--white);
-  padding: 2rem;
-}
-
-.wedding-planner-page__content h1 {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  margin: 1rem 0;
-}
-
-.wedding-planner-page__content p {
-  color: rgba(255, 255, 255, 0.75);
-  margin-bottom: 2rem;
-}
-
-.wedding-planner-page__link {
-  display: inline-block;
-  padding: 0.85rem 2rem;
-  border: 1.5px solid var(--white);
-  border-radius: 999px;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--white);
-  transition: all 0.3s ease;
-}
-
-.wedding-planner-page__link:hover {
-  background: var(--white);
-  color: var(--burgundy);
+@media (prefers-reduced-motion: reduce) {
+  .wedding-planner-page .wedding-hero__video,
+  .wedding-planner-page .wedding-hero__sparkle,
+  .wedding-planner-page .first-impression__marquee-track,
+  .wedding-planner-page .wedding-marquee__track {
+    animation: none !important;
+  }
 }

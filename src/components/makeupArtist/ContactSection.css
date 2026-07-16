@@ -28,6 +28,22 @@
   color: rgba(255, 255, 255, 0.45);
 }
 
+.contact-section--wedding {
+  background: var(--wp-champagne, #f7f0e8);
+}
+
+.contact-section--wedding .contact-section__title {
+  color: var(--wp-wine, #5c2e2e);
+}
+
+.contact-section--wedding .contact-section__link {
+  color: rgba(61, 44, 44, 0.72);
+}
+
+.contact-section--wedding a.contact-section__link:hover {
+  color: var(--wp-wine, #5c2e2e);
+}
+
 .contact-section__inner {
   max-width: var(--container-width);
   margin: 0 auto;

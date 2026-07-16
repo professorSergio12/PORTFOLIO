@@ -1,0 +1,176 @@
+.wedding-journey {
+  padding: var(--section-padding) clamp(1.25rem, 4vw, 3rem);
+  background: var(--wp-champagne);
+}
+
+.wedding-journey__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.wedding-journey__header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+}
+
+.wedding-journey__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--wp-espresso);
+  margin: 0.75rem 0 1rem;
+}
+
+.wedding-journey__intro {
+  color: rgba(61, 44, 44, 0.72);
+  line-height: 1.7;
+  font-size: 0.98rem;
+}
+
+.wedding-journey__body {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.wedding-journey__portrait-wrap {
+  position: sticky;
+  top: 6rem;
+}
+
+.wedding-journey__portrait-frame {
+  padding: 4px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, var(--wp-gold-light), var(--wp-gold));
+  box-shadow: 0 24px 50px rgba(61, 44, 44, 0.12);
+}
+
+.wedding-journey__portrait {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 24px;
+  display: block;
+}
+
+.wedding-journey__quote {
+  margin: 1.25rem 0 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid rgba(184, 148, 63, 0.25);
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-style: italic;
+  color: var(--wp-wine);
+  line-height: 1.5;
+}
+
+.wedding-journey__timeline-wrap {
+  position: relative;
+}
+
+.wedding-journey__timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.wedding-journey__timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: rgba(184, 148, 63, 0.15);
+}
+
+.wedding-journey__line-fill {
+  position: absolute;
+  left: 11px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--wp-gold), rgba(184, 148, 63, 0.15));
+  transform-origin: top;
+  z-index: 1;
+}
+
+.wedding-journey__secondary {
+  position: absolute;
+  right: -1.25rem;
+  bottom: 4.5rem;
+  width: clamp(96px, 28%, 130px);
+  padding: 3px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, var(--wp-gold-light), var(--wp-gold));
+  box-shadow: 0 16px 36px rgba(61, 44, 44, 0.18);
+  z-index: 2;
+}
+
+.wedding-journey__secondary img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 13px;
+  display: block;
+}
+
+.wedding-journey__step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 1rem;
+  padding-bottom: 2rem;
+}
+
+.wedding-journey__step:last-child {
+  padding-bottom: 0;
+}
+
+.wedding-journey__dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--wp-gold);
+  background: var(--wp-ivory);
+  box-shadow: 0 0 0 4px rgba(184, 148, 63, 0.15);
+  margin-top: 0.15rem;
+}
+
+.wedding-journey__year {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--wp-gold);
+}
+
+.wedding-journey__step-content h3 {
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  color: var(--wp-espresso);
+  margin: 0.35rem 0 0.5rem;
+}
+
+.wedding-journey__step-content p {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: rgba(61, 44, 44, 0.72);
+  max-width: 520px;
+}
+
+@media (max-width: 900px) {
+  .wedding-journey__body {
+    grid-template-columns: 1fr;
+  }
+
+  .wedding-journey__portrait-wrap {
+    position: static;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .wedding-journey__secondary {
+    right: -0.5rem;
+    bottom: 3.5rem;
+  }
+}

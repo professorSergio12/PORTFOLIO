@@ -25,4 +25,4 @@ npm run process-heic -- IMG_9326.HEIC   # HEIC → thumbs + optimized, deletes .
 npm run optimize-images   # JPEGs from gallery/originals/ → thumbs + optimized
 ```
 
-Originals are removed automatically after a successful compress. Quality settings preserve colors/detail (no harsh filter break).
+npm run optimize-wedding   # wedding photos → */optimized/*.jpg + hero video tune

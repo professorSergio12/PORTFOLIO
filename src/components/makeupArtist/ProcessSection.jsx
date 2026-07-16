@@ -19,6 +19,7 @@ export default function ProcessSection({
     'process-section',
     reversed ? 'process-section--reversed' : '',
     tone === 'cream' ? 'process-section--cream' : '',
+    tone === 'wedding' ? 'process-section--wedding' : '',
   ]
     .filter(Boolean)
     .join(' ')

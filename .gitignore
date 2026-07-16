@@ -19,6 +19,18 @@ src/assets/**/*.mp4
 # Raw reel sources (keep compressed .mp4 in repo)
 src/assets/makeup-artist/compressed/reels/*.{MOV,mov}
 
+# Wedding planner raw sources (keep JPG + compressed in repo)
+src/assets/wedding-planner/**/*.HEIC
+src/assets/wedding-planner/**/*.heic
+src/assets/wedding-planner/**/*.MOV
+src/assets/wedding-planner/**/*.mov
+src/assets/wedding-planner/Decor/*.png
+src/assets/wedding-planner/Decor/*.PNG
+src/assets/wedding-planner/Friends Wedding/*.JPG
+src/assets/wedding-planner/Friends Wedding/*.jpg
+src/assets/wedding-planner/Friends Wedding/*.jpeg
+!src/assets/wedding-planner/**/optimized/**
+
 # Build output
 dist
 dist-ssr

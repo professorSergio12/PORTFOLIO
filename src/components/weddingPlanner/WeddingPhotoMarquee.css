@@ -1,0 +1,93 @@
+.wedding-marquee {
+  padding: clamp(3rem, 7vw, 5rem) 0;
+  background: linear-gradient(180deg, var(--wp-ivory) 0%, var(--wp-champagne) 100%);
+  overflow: hidden;
+}
+
+.wedding-marquee__header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto clamp(2rem, 4vw, 2.75rem);
+  padding: 0 clamp(1.25rem, 4vw, 2rem);
+}
+
+.wedding-marquee__title {
+  font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+  color: var(--wp-wine);
+  margin: 0.75rem 0 0.75rem;
+}
+
+.wedding-marquee__intro {
+  color: rgba(61, 44, 44, 0.68);
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+.wedding-marquee__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.wedding-marquee__row {
+  overflow: hidden;
+}
+
+.wedding-marquee__track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: wedding-marquee-left 48s linear infinite;
+}
+
+.wedding-marquee__row--reverse .wedding-marquee__track {
+  animation-name: wedding-marquee-right;
+  animation-duration: 54s;
+}
+
+.wedding-marquee__frame {
+  flex: 0 0 auto;
+  width: clamp(180px, 22vw, 280px);
+  aspect-ratio: 4 / 5;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 14px 36px rgba(92, 46, 46, 0.14);
+  border: 1px solid rgba(184, 148, 63, 0.22);
+}
+
+.wedding-marquee__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s var(--transition-smooth);
+}
+
+.wedding-marquee__frame:hover img {
+  transform: scale(1.06);
+}
+
+@keyframes wedding-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes wedding-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wedding-marquee__track {
+    animation: none;
+  }
+}

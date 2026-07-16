@@ -48,6 +48,24 @@
   color: rgba(91, 13, 21, 0.68);
 }
 
+.process-section--wedding {
+  background: var(--wp-espresso, #3d2c2c);
+  color: var(--white);
+}
+
+.process-section--wedding .process-section__title,
+.process-section--wedding .process-section__step h3 {
+  color: var(--white);
+}
+
+.process-section--wedding .process-section__step p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.process-section--wedding .process-section__intro {
+  color: rgba(255, 255, 255, 0.68);
+}
+
 .process-section--cream .process-section__title {
   color: var(--burgundy);
 }
