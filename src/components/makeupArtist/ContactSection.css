@@ -95,11 +95,20 @@ a.contact-section__link:hover {
 }
 
 @media (max-width: 900px) {
+  .contact-section {
+    padding-block: clamp(2.75rem, 8vw, 4rem) 1.5rem;
+  }
+
   .contact-section__inner {
     grid-template-columns: 1fr;
   }
 
   .contact-section__side {
     display: none;
+  }
+
+  .contact-section__footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
   }
 }

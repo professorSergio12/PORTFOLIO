@@ -3,24 +3,50 @@ import { motion } from 'framer-motion'
 import ScrollReveal from '../common/ScrollReveal'
 import './ReelsSection.css'
 
+const DEFAULT_PREVIEW_TIME = 0.75
+
 function ReelCard({ reel, isPlaying, onPlay, onStop }) {
   const videoRef = useRef(null)
-  const previewTime = reel.previewTime ?? 0
+  const hasPoster = Boolean(reel.poster)
+  const previewTime = reel.previewTime ?? DEFAULT_PREVIEW_TIME
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || hasPoster) return
+
+    const showPreviewFrame = () => {
+      if (isPlaying || !video.duration) return
+      const target = Math.min(previewTime, Math.max(0, video.duration - 0.05))
+      if (Math.abs(video.currentTime - target) > 0.05) {
+        video.currentTime = target
+      }
+    }
+
+    video.addEventListener('loadeddata', showPreviewFrame)
+    if (video.readyState >= 2) showPreviewFrame()
+
+    return () => video.removeEventListener('loadeddata', showPreviewFrame)
+  }, [hasPoster, isPlaying, previewTime, reel.video])
 
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
 
     if (isPlaying) {
-      if (video.currentTime !== 0) {
-        video.currentTime = 0
-      }
+      video.currentTime = 0
       video.play().catch(() => {})
-    } else {
-      video.pause()
-      video.currentTime = previewTime
+      return
     }
-  }, [isPlaying, previewTime])
+
+    video.pause()
+
+    if (hasPoster) return
+
+    if (video.readyState >= 1 && video.duration) {
+      const target = Math.min(previewTime, Math.max(0, video.duration - 0.05))
+      video.currentTime = target
+    }
+  }, [isPlaying, hasPoster, previewTime, reel.video])
 
   return (
     <article className="reels-section__card">
@@ -39,15 +65,24 @@ function ReelCard({ reel, isPlaying, onPlay, onStop }) {
         tabIndex={0}
         aria-label={isPlaying ? 'Pause reel' : 'Play reel'}
       >
+        {hasPoster && !isPlaying ? (
+          <img
+            src={reel.poster}
+            alt=""
+            className="reels-section__poster"
+            loading="lazy"
+            decoding="async"
+          />
+        ) : null}
         <video
           ref={videoRef}
           src={reel.video}
-          poster={reel.poster}
+          poster={hasPoster ? reel.poster : undefined}
           muted
           loop
           playsInline
-          preload={reel.poster ? 'none' : 'metadata'}
-          className="reels-section__video"
+          preload={hasPoster ? 'none' : 'metadata'}
+          className={`reels-section__video ${hasPoster && !isPlaying ? 'reels-section__video--hidden' : ''}`}
         />
         <span className="reels-section__overlay" aria-hidden="true" />
         <span className="reels-section__play" aria-hidden="true">

@@ -5,6 +5,7 @@
 - `gallery/optimized/` — section & gallery images (~150–300 KB)
 - `compressed/mua-reel.mp4` — hero video
 - `compressed/reels/*.mp4` — reel carousel videos
+- `compressed/reels/*-poster.jpg` — reel preview thumbnails (auto-created by `compress-reels`)
 - `wedding-planner/compressed/decor-reel.mp4`
 
 **Total assets folder: ~23 MB**

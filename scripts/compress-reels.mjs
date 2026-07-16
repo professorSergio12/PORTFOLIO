@@ -1,4 +1,4 @@
-import { mkdir, readdir, unlink } from 'fs/promises'
+import { mkdir, readdir, access, unlink } from 'fs/promises'
 import { spawn } from 'child_process'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -19,6 +19,35 @@ function runFfmpeg(args) {
     const proc = spawn(ffmpegPath.path, args, { stdio: 'inherit' })
     proc.on('close', (code) => (code === 0 ? resolve() : reject(new Error(`ffmpeg exited ${code}`))))
   })
+}
+
+async function ensurePoster(videoPath) {
+  const base = path.basename(videoPath, path.extname(videoPath)).toLowerCase()
+  const posterPath = path.join(outputDir, `${base}-poster.jpg`)
+
+  try {
+    await access(posterPath)
+    return
+  } catch {
+    // create below
+  }
+
+  console.log(`Creating poster ${path.basename(posterPath)}...`)
+  await runFfmpeg([
+    '-y',
+    '-ss',
+    '00:00:01',
+    '-i',
+    videoPath,
+    '-vframes',
+    '1',
+    '-q:v',
+    '3',
+    '-vf',
+    'scale=480:-2',
+    posterPath,
+  ])
+  console.log(`✓ ${posterPath}`)
 }
 
 await mkdir(outputDir, { recursive: true })
@@ -50,15 +79,18 @@ if (files.length === 0) {
 for (const input of files) {
   const base = path.basename(input, path.extname(input)).toLowerCase()
   const output = path.join(outputDir, `${base}.mp4`)
+  const isAlreadyCompressed = path.resolve(input) === path.resolve(output)
 
-  if (path.resolve(input) === path.resolve(output)) continue
+  if (!isAlreadyCompressed) {
+    console.log(`Compressing ${path.basename(input)}...`)
+    await runFfmpeg(['-y', '-i', input, ...FFMPEG_VIDEO_OPTS, output])
+    console.log(`✓ ${output}`)
 
-  console.log(`Compressing ${path.basename(input)}...`)
-  await runFfmpeg(['-y', '-i', input, ...FFMPEG_VIDEO_OPTS, output])
-  console.log(`✓ ${output}`)
+    await unlink(input)
+    console.log(`  deleted original: ${path.basename(input)}`)
+  }
 
-  await unlink(input)
-  console.log(`  deleted original: ${path.basename(input)}`)
+  await ensurePoster(isAlreadyCompressed ? input : output)
 }
 
 console.log('Reel compression complete')

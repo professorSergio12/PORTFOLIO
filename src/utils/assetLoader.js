@@ -20,7 +20,7 @@ export function sortByName(entries) {
 }
 
 /** @param {string} name */
-export function filenameToLabel(name) {
+function filenameToLabel(name) {
   return name
     .replace(/^img[_-]?/i, '')
     .replace(/[_-]+/g, ' ')
@@ -149,12 +149,12 @@ export function buildReels(videos, posters) {
     posters.map((entry) => [entry.name.replace(/-poster$/i, ''), entry.url]),
   )
 
-  return sortByName(videos).map((entry, index) => {
+    return sortByName(videos).map((entry, index) => {
     const poster = posterByBase.get(entry.name)
     return {
       id: index + 1,
       video: entry.url,
-      ...(poster ? { poster, previewTime: 0 } : {}),
+      ...(poster ? { poster } : { previewTime: 0.75 }),
     }
   })
 }
