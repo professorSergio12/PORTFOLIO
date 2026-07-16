@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from './components/common/Navbar'
+import ScrollToTop from './components/common/ScrollToTop'
 import MakeupArtistPage from './pages/MakeupArtistPage'
 import WeddingPlannerPage from './pages/WeddingPlannerPage'
 import BirthdayPlannerPage from './pages/BirthdayPlannerPage'
@@ -7,6 +8,7 @@ import BirthdayPlannerPage from './pages/BirthdayPlannerPage'
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Navigate to="/makeup-artist" replace />} />
