@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
+import LazyImage from '../common/LazyImage'
 import ScrollReveal from '../common/ScrollReveal'
 import EventReels from '../birthdayPlanner/EventReels'
 import { imageReveal, weddingEase } from '../../utils/weddingMotion'
@@ -18,7 +19,7 @@ export default function DogriWedding({ section }) {
     target: featuredRef,
     offset: ['start end', 'end start'],
   })
-  const featuredScale = useTransform(scrollYProgress, [0, 1], [1.08, 1])
+  const featuredScale = useTransform(scrollYProgress, [0, 1], [1.05, 1])
 
   return (
     <section id="dogri-wedding" className="dogri-wedding">
@@ -33,25 +34,19 @@ export default function DogriWedding({ section }) {
           <motion.div
             ref={featuredRef}
             className="dogri-wedding__featured"
-            initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
-            whileInView={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
-            viewport={{ once: false, margin: '-60px' }}
-            transition={{ duration: 1.1, ease: weddingEase }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, ease: weddingEase }}
           >
             <motion.img
               src={featured.imageFull || featured.image}
               alt=""
               style={{ scale: featuredScale }}
+              loading="eager"
+              decoding="async"
             />
-            <motion.div
-              className="dogri-wedding__featured-badge"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ delay: 0.4, duration: 0.7, ease: weddingEase }}
-            >
-              Traditional · Joyful · Unforgettable
-            </motion.div>
+            <div className="dogri-wedding__featured-badge">Traditional · Joyful · Unforgettable</div>
           </motion.div>
         ) : null}
 
@@ -59,13 +54,13 @@ export default function DogriWedding({ section }) {
           <div className="dogri-wedding__grid">
             {gallery.map((item, index) => (
               <motion.div
-                key={`${item.id}-${item.image}`}
+                key={`${item.id}-${item.name}`}
                 className={`dogri-wedding__item dogri-wedding__item--${getGalleryLayout(index)}`}
                 {...imageReveal}
-                transition={{ duration: 0.95, delay: (index % 5) * 0.07, ease: weddingEase }}
-                whileHover={{ scale: 1.025, y: -4 }}
+                transition={{ duration: 0.6, delay: (index % 5) * 0.05, ease: weddingEase }}
+                whileHover={{ scale: 1.02, y: -3 }}
               >
-                <img src={item.imageFull || item.image} alt="" loading="lazy" />
+                <LazyImage src={item.image} alt="" className="dogri-wedding__lazy" />
               </motion.div>
             ))}
           </div>

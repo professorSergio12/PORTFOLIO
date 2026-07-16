@@ -10,6 +10,16 @@ const optimizedImages = import.meta.glob(
   { eager: true, import: 'default' },
 )
 
+const thumbImages = import.meta.glob(
+  '../assets/wedding-planner/**/thumbs/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
+  { eager: true, import: 'default' },
+)
+
+const displayImages = import.meta.glob(
+  '../assets/wedding-planner/**/display/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
+  { eager: true, import: 'default' },
+)
+
 const fallbackImages = import.meta.glob(
   '../assets/wedding-planner/**/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
   { eager: true, import: 'default' },
@@ -32,6 +42,7 @@ function preferOptimizedImages(entries) {
 
   for (const entry of entries) {
     if (pathIncludes(entry, 'compressed')) continue
+    if (pathIncludes(entry, '/thumbs/') || pathIncludes(entry, '/display/')) continue
 
     const key = entry.name.toLowerCase()
     const isOptimized = pathIncludes(entry, 'optimized')
@@ -44,23 +55,55 @@ function preferOptimizedImages(entries) {
   return sortByName([...byKey.values()])
 }
 
-function toGalleryItem(entry, index) {
+function urlForName(entries, name) {
+  return entries.find((entry) => entry.name.toLowerCase() === name.toLowerCase())?.url ?? null
+}
+
+function resolveImageUrls(entry, thumbs, displays) {
+  if (!entry) return { thumb: null, display: null, full: null }
+  const name = entry.name
+  return {
+    thumb: urlForName(thumbs, name) ?? entry.url,
+    display: urlForName(displays, name) ?? entry.url,
+    full: entry.url,
+  }
+}
+
+function toGalleryItem(entry, index, thumbs, displays) {
+  const urls = resolveImageUrls(entry, thumbs, displays)
   return {
     id: index + 1,
     name: entry.name,
-    image: entry.url,
-    imageFull: entry.url,
+    image: urls.thumb,
+    imageFull: urls.display,
     label: entry.name,
   }
+}
+
+function portraitThumbUrl(entry, optimizedEntries) {
+  if (!entry) return null
+  const base = entry.name.replace(/\.(jpe?g|png|webp)$/i, '')
+  const thumb = optimizedEntries.find(
+    (item) => item.name.toLowerCase() === `${base.toLowerCase()}-portrait`,
+  )
+  return thumb?.url ?? entry.url
+}
+
+function isPortraitThumb(entry) {
+  return /-portrait$/i.test(entry.name)
 }
 
 export function loadWeddingPlannerAssets() {
   const heroVideo = pickPreferred(entriesFromGlob(heroVideos), ['decor-reel', 'hero'])
 
+  const optimizedEntries = entriesFromGlob(optimizedImages).filter((entry) => !isPortraitThumb(entry))
+  const thumbEntries = entriesFromGlob(thumbImages)
+  const displayEntries = entriesFromGlob(displayImages)
+
   const images = preferOptimizedImages([
-    ...entriesFromGlob(optimizedImages),
+    ...optimizedEntries,
     ...entriesFromGlob(fallbackImages),
-  ])
+  ]).filter((entry) => !isPortraitThumb(entry))
 
   const personal = images.filter((entry) => pathIncludes(entry, 'personal'))
   const dogriImages = images.filter((entry) => pathIncludes(entry, 'friends wedding'))
@@ -76,54 +119,71 @@ export function loadWeddingPlannerAssets() {
       !pathIncludes(entry, 'compressed/decor-reel'),
   )
 
-  const portrait =
-    pickPreferred(personal, ['9461', '9459', 'IMG_9461', 'IMG_9459'])?.url ??
-    personal[0]?.url ??
+  const portraitEntry =
+    pickPreferred(personal, ['9461', '9459', 'IMG_9461', 'IMG_9459']) ??
+    personal[0] ??
     null
 
-  const secondaryPortrait =
-    personal.find((entry) => entry.url !== portrait)?.url ?? null
+  const secondaryPortraitEntry =
+    personal.find((entry) => entry.url !== portraitEntry?.url) ?? null
 
-  const dogriFeatured =
+  const portraitOptimized = entriesFromGlob(optimizedImages)
+  const portrait = portraitThumbUrl(portraitEntry, portraitOptimized)
+  const secondaryPortrait = portraitThumbUrl(secondaryPortraitEntry, portraitOptimized)
+
+  const dogriFeaturedEntry =
     pickPreferred(dogriImages, ['229A2916', '229A3050', '180A3652']) ??
     dogriImages[0] ??
     null
 
-  const welcomeHero =
+  const dogriFeaturedUrls = resolveImageUrls(dogriFeaturedEntry, thumbEntries, displayEntries)
+
+  const welcomeHeroEntry =
     photobooth.find((entry) => /welcome|impression|mirror/i.test(entry.path)) ??
     photobooth[0] ??
     null
+
+  const welcomeHeroUrls = resolveImageUrls(welcomeHeroEntry, thumbEntries, displayEntries)
+
+  const marqueeSource = [...dogriImages, ...decor]
 
   return {
     heroVideo: heroVideo?.url ?? null,
     portrait,
     secondaryPortrait,
     journeyImages: personal.map((entry) => entry.url),
-    allPhotos: images.map(toGalleryItem),
+    allPhotos: images.map((entry, index) => toGalleryItem(entry, index, thumbEntries, displayEntries)),
+    marqueePhotos: marqueeSource.map((entry, index) =>
+      toGalleryItem(entry, index, thumbEntries, displayEntries),
+    ),
     firstImpression: {
-      hero: welcomeHero?.url ?? null,
-      items: photobooth.map(toGalleryItem),
+      hero: welcomeHeroUrls.display ?? welcomeHeroUrls.thumb,
+      items: photobooth.map((entry, index) => toGalleryItem(entry, index, thumbEntries, displayEntries)),
     },
     dogriWedding: {
-      featured: dogriFeatured
+      featured: dogriFeaturedEntry
         ? {
-            image: dogriFeatured.url,
-            imageFull: dogriFeatured.url,
+            image: dogriFeaturedUrls.display ?? dogriFeaturedUrls.thumb,
+            imageFull: dogriFeaturedUrls.display ?? dogriFeaturedUrls.full,
             label: 'Celebration',
           }
         : null,
-      gallery: dogriImages.map(toGalleryItem),
+      gallery: dogriImages.map((entry, index) => toGalleryItem(entry, index, thumbEntries, displayEntries)),
       videos: dogriVideos.map((entry, index) => ({
         id: index + 1,
         video: entry.url,
         previewTime: 0.75,
       })),
     },
-    decor: decor.map(toGalleryItem),
+    decor: decor.map((entry, index) => toGalleryItem(entry, index, thumbEntries, displayEntries)),
     contactImages: [
-      secondaryPortrait ?? personal[0]?.url,
-      decor[decor.length - 1]?.url ?? photobooth[photobooth.length - 1]?.url,
-      dogriImages[2]?.url ?? dogriImages[0]?.url,
+      resolveImageUrls(secondaryPortraitEntry, thumbEntries, displayEntries).display ??
+        secondaryPortraitEntry?.url,
+      resolveImageUrls(decor[decor.length - 1], thumbEntries, displayEntries).display ??
+        decor[decor.length - 1]?.url,
+      resolveImageUrls(dogriImages[2] ?? dogriImages[0], thumbEntries, displayEntries).display ??
+        dogriImages[2]?.url ??
+        dogriImages[0]?.url,
     ].filter(Boolean),
   }
 }

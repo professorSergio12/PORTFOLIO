@@ -1,7 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
+import LazyImage from '../common/LazyImage'
 import ScrollReveal from '../common/ScrollReveal'
-import { imageReveal, slideFromLeft, slideFromRight, weddingEase } from '../../utils/weddingMotion'
+import { slideFromLeft, slideFromRight, weddingEase } from '../../utils/weddingMotion'
 import './DecorShowcase.css'
 
 export default function DecorShowcase({ section }) {
@@ -11,7 +12,7 @@ export default function DecorShowcase({ section }) {
     target: layoutRef,
     offset: ['start end', 'end start'],
   })
-  const featuredY = useTransform(scrollYProgress, [0, 1], [30, -30])
+  const featuredY = useTransform(scrollYProgress, [0, 1], [20, -20])
 
   if (!items.length) return null
 
@@ -31,13 +32,13 @@ export default function DecorShowcase({ section }) {
             className="decor-showcase__featured"
             style={{ y: featuredY }}
             {...slideFromLeft}
-            transition={{ duration: 1, ease: weddingEase }}
+            transition={{ duration: 0.75, ease: weddingEase }}
           >
-            <motion.img
+            <img
               src={featured.imageFull || featured.image}
               alt=""
-              {...imageReveal}
-              transition={{ duration: 1.1, ease: weddingEase }}
+              loading="eager"
+              decoding="async"
             />
           </motion.div>
 
@@ -47,10 +48,10 @@ export default function DecorShowcase({ section }) {
                 key={item.id}
                 className="decor-showcase__item"
                 {...slideFromRight}
-                transition={{ duration: 0.85, delay: index * 0.12, ease: weddingEase }}
-                whileHover={{ y: -6, scale: 1.02 }}
+                transition={{ duration: 0.65, delay: index * 0.08, ease: weddingEase }}
+                whileHover={{ y: -4, scale: 1.02 }}
               >
-                <img src={item.imageFull || item.image} alt="" loading="lazy" />
+                <LazyImage src={item.image} alt="" />
               </motion.div>
             ))}
           </div>

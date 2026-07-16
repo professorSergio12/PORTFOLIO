@@ -112,4 +112,8 @@ if (images.length === 0) {
 }
 
 await optimizeHeroVideo()
+
+console.log('Generating thumbs + display variants...')
+await import('./generate-wedding-thumbs.mjs')
+
 console.log('Wedding asset optimization complete')

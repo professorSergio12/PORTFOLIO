@@ -52,6 +52,22 @@ export function weddingFullPipeline(input) {
     })
 }
 
+/** Wedding grids / marquee — fast load, sharp enough for cards */
+export function weddingThumbPipeline(input) {
+  return input
+    .rotate()
+    .resize(640, null, { withoutEnlargement: true, fit: 'inside', kernel: 'lanczos3' })
+    .jpeg({ quality: 82, mozjpeg: true, trellisQuantisation: true })
+}
+
+/** Wedding featured heroes — balance quality and speed */
+export function weddingDisplayPipeline(input) {
+  return input
+    .rotate()
+    .resize(960, null, { withoutEnlargement: true, fit: 'inside', kernel: 'lanczos3' })
+    .jpeg({ quality: 85, mozjpeg: true, trellisQuantisation: true })
+}
+
 export const FFMPEG_HERO_OPTS = [
   '-vf',
   'scale=720:-2:flags=lanczos',

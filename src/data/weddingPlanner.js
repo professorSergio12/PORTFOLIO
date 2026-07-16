@@ -133,12 +133,12 @@ export const weddingPlannerData = {
   photoMarquee: {
     label: 'Every Detail',
     title: 'Captured Moments',
-    intro: 'A glimpse of the celebrations, décor, and welcome moments we bring to life.',
-    photos: assets.allPhotos,
+    intro: 'Celebrations and décor — the moments and spaces we create together.',
+    photos: assets.marqueePhotos,
   },
 
   contact: {
-    email: 'mishtyvig@gmail.com',
+    email: 'maliakathakur0408@gmail.com',
     phone: '+91 7973060350',
     cta: 'Plan Your Wedding',
     footer: '© 2026 — Wedding Planner',

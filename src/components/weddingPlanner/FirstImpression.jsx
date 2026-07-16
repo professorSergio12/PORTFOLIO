@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import LazyImage from '../common/LazyImage'
 import ScrollReveal from '../common/ScrollReveal'
 import { clipRevealUp, weddingEase } from '../../utils/weddingMotion'
 import './FirstImpression.css'
@@ -22,27 +23,19 @@ export default function FirstImpression({ section }) {
           <motion.div
             className="first-impression__hero"
             {...clipRevealUp}
-            transition={{ duration: 1.1, ease: weddingEase }}
+            transition={{ duration: 0.8, ease: weddingEase }}
           >
-            <motion.img
+            <img
               src={section.hero}
               alt=""
               className="first-impression__hero-img"
-              initial={{ scale: 1.12 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: false, margin: '-60px' }}
-              transition={{ duration: 1.4, ease: weddingEase }}
+              loading="eager"
+              decoding="async"
             />
-            <motion.div
-              className="first-impression__hero-caption"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: '-40px' }}
-              transition={{ duration: 0.8, delay: 0.3, ease: weddingEase }}
-            >
+            <div className="first-impression__hero-caption">
               <span>Welcome</span>
               <p>Your guests&apos; first glimpse of the celebration</p>
-            </motion.div>
+            </div>
           </motion.div>
         ) : null}
 
@@ -54,14 +47,14 @@ export default function FirstImpression({ section }) {
                   <motion.article
                     key={`${item.id}-${index}`}
                     className="first-impression__card"
-                    initial={{ opacity: 0, y: 32 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, margin: '-20px' }}
-                    transition={{ duration: 0.65, delay: (index % items.length) * 0.08, ease: weddingEase }}
-                    whileHover={{ y: -8, scale: 1.02 }}
+                    viewport={{ once: true, margin: '-20px' }}
+                    transition={{ duration: 0.5, delay: (index % items.length) * 0.05, ease: weddingEase }}
+                    whileHover={{ y: -6, scale: 1.02 }}
                   >
                     <div className="first-impression__card-image">
-                      <img src={item.imageFull || item.image} alt="" loading="lazy" />
+                      <LazyImage src={item.image} alt="" />
                     </div>
                     <p className="first-impression__card-label">
                       {CARD_LABELS[index % items.length] ?? 'Styling'}

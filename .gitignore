@@ -30,6 +30,8 @@ src/assets/wedding-planner/Friends Wedding/*.JPG
 src/assets/wedding-planner/Friends Wedding/*.jpg
 src/assets/wedding-planner/Friends Wedding/*.jpeg
 !src/assets/wedding-planner/**/optimized/**
+!src/assets/wedding-planner/**/thumbs/**
+!src/assets/wedding-planner/**/display/**
 
 # Build output
 dist

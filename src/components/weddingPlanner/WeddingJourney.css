@@ -43,6 +43,7 @@
   border-radius: 28px;
   background: linear-gradient(145deg, var(--wp-gold-light), var(--wp-gold));
   box-shadow: 0 24px 50px rgba(61, 44, 44, 0.12);
+  min-height: 320px;
 }
 
 .wedding-journey__portrait {
@@ -51,6 +52,7 @@
   object-fit: cover;
   border-radius: 24px;
   display: block;
+  background: var(--wp-blush);
 }
 
 .wedding-journey__quote {

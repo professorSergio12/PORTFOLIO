@@ -67,6 +67,14 @@
   transition: transform 0.6s var(--transition-smooth);
 }
 
+.decor-showcase__item .lazy-image,
+.decor-showcase__item .lazy-image__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
 .decor-showcase__item:hover img {
   transform: scale(1.05);
 }

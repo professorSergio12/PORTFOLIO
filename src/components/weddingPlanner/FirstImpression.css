@@ -109,7 +109,9 @@
   border: 1px solid rgba(212, 184, 122, 0.25);
 }
 
-.first-impression__card-image img {
+.first-impression__card-image img,
+.first-impression__card-image .lazy-image,
+.first-impression__card-image .lazy-image__img {
   width: 100%;
   height: 100%;
   object-fit: cover;

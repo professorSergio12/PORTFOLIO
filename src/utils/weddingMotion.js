@@ -15,10 +15,10 @@ export const fadeIn = {
 }
 
 export const imageReveal = {
-  initial: { opacity: 0, scale: 1.08, filter: 'blur(10px)' },
-  whileInView: { opacity: 1, scale: 1, filter: 'blur(0px)' },
-  viewport: { once: false, margin: '-50px' },
-  transition: { duration: 1.1, ease: weddingEase },
+  initial: { opacity: 0, scale: 1.03 },
+  whileInView: { opacity: 1, scale: 1 },
+  viewport: { once: true, margin: '-40px' },
+  transition: { duration: 0.65, ease: weddingEase },
 }
 
 export const clipRevealUp = {
