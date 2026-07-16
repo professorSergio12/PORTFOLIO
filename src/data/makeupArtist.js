@@ -109,27 +109,63 @@ export const makeupArtistData = {
   },
 
   processSection: {
-    label: 'Course Highlights',
-    title: 'Everything You Need to Succeed',
+    label: 'How It Works',
+    title: 'From First Call to Final Glow',
+    intro:
+      'Every booking follows a calm, structured journey — from understanding your vision to delivering makeup that lasts from ceremony to celebration.',
   },
 
   process: [
     {
       step: '01',
-      title: 'Certificate Included',
-      description: 'Receive a certificate of completion when you finish the course.',
+      title: 'Consultation',
+      description:
+        'Share your event date, outfit palette, and skin concerns. We discuss your preferred look, venue lighting, and timeline so your makeup plan feels personal and stress-free.',
     },
     {
       step: '02',
-      title: 'Course Notes & Product Guide',
-      description: 'Digital course notes, product guide, and brush guide included with your enrollment.',
+      title: 'Trial Session',
+      description:
+        'A dedicated trial with photography-friendly checks under natural and flash light. We refine shades, textures, and longevity until you feel fully confident and camera-ready.',
     },
     {
       step: '03',
-      title: 'Learn Anytime, Anywhere',
-      description: 'Flexible learning designed to fit your schedule — study at your own pace.',
+      title: 'Your Perfect Day',
+      description:
+        'Flawless, long-lasting makeup with premium products and careful skin prep — at your location or our studio, with touch-ups through your most important moments.',
     },
   ],
+
+  whyUsSection: {
+    label: 'Why Us',
+    title: 'The Beauty Maison Difference',
+    intro:
+      'We combine professional technique, luxury products, and personal attention so every client feels heard, prepared, and beautifully confident.',
+  },
+
+  whyUs: [
+    {
+      step: '01',
+      title: 'Skin-First Approach',
+      description:
+        'Prep and base tailored to your skin type — hydration, colour correction, and seamless blending for a natural, radiant finish that photographs beautifully in every light.',
+    },
+    {
+      step: '02',
+      title: 'Premium Products Only',
+      description:
+        'A curated, hygienic kit of high-end foundations, pigments, and tools. No shortcuts on quality, wear-time, or comfort — makeup that stays fresh from getting-ready to the last dance.',
+    },
+    {
+      step: '03',
+      title: 'Bridal to Party Ready',
+      description:
+        'Bridal, engagement, reception, sangeet, and editorial looks — one artist who adapts to every occasion while keeping your style cohesive, elegant, and true to you.',
+    },
+  ],
+
+  processImage: assets.processImage,
+  whyUsImage: assets.whyUsImage,
 
   contact: {
     email: 'mishtyvig@gmail.com',

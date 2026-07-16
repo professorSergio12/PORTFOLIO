@@ -10,7 +10,7 @@ export default function AboutSection({ portrait, about }) {
       <StarDecoration variant="scattered" />
 
       <div className="about-section__inner">
-        <ScrollReveal direction="left" className="about-section__col about-section__col--left">
+        <ScrollReveal direction="left" once={false} className="about-section__col about-section__col--left">
           <h2 className="about-section__heading">{about.left.heading}</h2>
           {about.left.paragraphs.map((text, i) => (
             <p key={i} className="about-section__text">
@@ -24,7 +24,7 @@ export default function AboutSection({ portrait, about }) {
           <RingPeekPortrait src={portrait} alt="Makeup artist portrait" />
         </div>
 
-        <ScrollReveal direction="right" className="about-section__col about-section__col--right">
+        <ScrollReveal direction="right" once={false} className="about-section__col about-section__col--right">
           <h2 className="about-section__heading">{about.right.heading}</h2>
           {about.right.paragraphs.map((text, i) => (
             <p key={i} className="about-section__text">

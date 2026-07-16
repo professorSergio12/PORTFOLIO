@@ -3,18 +3,35 @@ import ScrollReveal from '../common/ScrollReveal'
 import ArchedFrame from '../common/ArchedFrame'
 import './ProcessSection.css'
 
-export default function ProcessSection({ steps, portrait, section }) {
+export default function ProcessSection({
+  steps,
+  portrait,
+  section,
+  reversed = false,
+  tone = 'burgundy',
+}) {
   const sectionMeta = section ?? {
     label: 'How It Works',
     title: 'Your Journey to Flawless',
   }
 
+  const sectionClass = [
+    'process-section',
+    reversed ? 'process-section--reversed' : '',
+    tone === 'cream' ? 'process-section--cream' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <section className="process-section">
+    <section className={sectionClass}>
       <div className="process-section__inner">
-        <ScrollReveal className="process-section__header">
+        <ScrollReveal once={false} className="process-section__header">
           <p className="section-label">{sectionMeta.label}</p>
           <h2 className="process-section__title">{sectionMeta.title}</h2>
+          {sectionMeta.intro ? (
+            <p className="process-section__intro">{sectionMeta.intro}</p>
+          ) : null}
         </ScrollReveal>
 
         <div className="process-section__body">
@@ -23,9 +40,9 @@ export default function ProcessSection({ steps, portrait, section }) {
               <motion.div
                 key={step.step}
                 className="process-section__step"
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: reversed ? 30 : -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
+                viewport={{ once: false, margin: '-40px' }}
                 transition={{
                   duration: 0.6,
                   delay: i * 0.15,
@@ -46,9 +63,11 @@ export default function ProcessSection({ steps, portrait, section }) {
             ))}
           </div>
 
-          <div className="process-section__frame">
-            <ArchedFrame src={portrait} alt="Process" variant="small" />
-          </div>
+          {portrait ? (
+            <div className="process-section__frame">
+              <ArchedFrame src={portrait} alt="" variant="small" once={false} />
+            </div>
+          ) : null}
         </div>
       </div>
     </section>

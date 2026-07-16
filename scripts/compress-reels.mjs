@@ -1,14 +1,16 @@
-import { mkdir, readdir } from 'fs/promises'
+import { mkdir, readdir, unlink } from 'fs/promises'
 import { spawn } from 'child_process'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import ffmpegPath from '@ffmpeg-installer/ffmpeg'
+import { FFMPEG_VIDEO_OPTS } from './lib/compress-presets.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.join(__dirname, '../src/assets/makeup-artist')
 const sources = [
   path.join(root, 'reels'),
   path.join(root, 'gallery'),
+  path.join(root, 'compressed/reels'),
 ]
 const outputDir = path.join(root, 'compressed/reels')
 
@@ -49,25 +51,14 @@ for (const input of files) {
   const base = path.basename(input, path.extname(input)).toLowerCase()
   const output = path.join(outputDir, `${base}.mp4`)
 
+  if (path.resolve(input) === path.resolve(output)) continue
+
   console.log(`Compressing ${path.basename(input)}...`)
-  await runFfmpeg([
-    '-y',
-    '-i',
-    input,
-    '-vf',
-    'scale=720:-2',
-    '-c:v',
-    'libx264',
-    '-crf',
-    '28',
-    '-preset',
-    'fast',
-    '-an',
-    '-movflags',
-    '+faststart',
-    output,
-  ])
+  await runFfmpeg(['-y', '-i', input, ...FFMPEG_VIDEO_OPTS, output])
   console.log(`✓ ${output}`)
+
+  await unlink(input)
+  console.log(`  deleted original: ${path.basename(input)}`)
 }
 
 console.log('Reel compression complete')

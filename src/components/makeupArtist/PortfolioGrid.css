@@ -3,6 +3,18 @@
   padding: var(--section-padding) clamp(1.5rem, 4vw, 3rem);
 }
 
+.portfolio-grid--cream {
+  background: var(--cream);
+}
+
+.portfolio-grid--cream .portfolio-grid__title {
+  color: var(--burgundy);
+}
+
+.portfolio-grid--cream .portfolio-grid__desc {
+  color: rgba(91, 13, 21, 0.72);
+}
+
 .portfolio-grid__inner {
   max-width: var(--container-width);
   margin: 0 auto;

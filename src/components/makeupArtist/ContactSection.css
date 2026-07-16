@@ -3,6 +3,31 @@
   padding: var(--section-padding) clamp(1.5rem, 4vw, 3rem) 2rem;
 }
 
+.contact-section--burgundy {
+  background: var(--burgundy);
+  color: var(--white);
+}
+
+.contact-section--burgundy .contact-section__title {
+  color: var(--white);
+}
+
+.contact-section--burgundy .contact-section__link {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.contact-section--burgundy a.contact-section__link:hover {
+  color: var(--white);
+}
+
+.contact-section--burgundy .contact-section__footer {
+  border-top-color: rgba(255, 255, 255, 0.14);
+}
+
+.contact-section--burgundy .contact-section__footer p {
+  color: rgba(255, 255, 255, 0.45);
+}
+
 .contact-section__inner {
   max-width: var(--container-width);
   margin: 0 auto;

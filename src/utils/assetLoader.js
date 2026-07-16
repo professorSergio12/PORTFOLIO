@@ -61,6 +61,30 @@ export function buildImageGallery(thumbs, optimized, options = {}) {
 }
 
 /**
+ * @param {ReturnType<typeof buildImageGallery>} gallery
+ * @param {AssetEntry[]} optimized
+ * @param {{ exclude?: (name: string) => boolean }} [options]
+ */
+export function mergeOptimizedOnlyGallery(gallery, optimized, options = {}) {
+  const { exclude = () => false } = options
+  const existingNames = new Set(gallery.map((item) => item.name))
+
+  const extras = sortByName(optimized)
+    .filter((entry) => !exclude(entry.name) && !existingNames.has(entry.name))
+    .map((entry) => ({
+      name: entry.name,
+      image: entry.url,
+      imageFull: entry.url,
+      label: filenameToLabel(entry.name),
+    }))
+
+  return sortByName([...gallery, ...extras].map((item) => ({ ...item }))).map((item, index) => ({
+    ...item,
+    id: index + 1,
+  }))
+}
+
+/**
  * @param {AssetEntry[]} images
  * @param {ReturnType<typeof buildImageGallery>} existingGallery
  */

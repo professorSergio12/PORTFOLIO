@@ -16,6 +16,9 @@ src/assets/**/*.mp4
 !src/assets/birthday-planner/*.mp4
 !src/assets/birthday-planner/**/*.mp4
 
+# Raw reel sources (keep compressed .mp4 in repo)
+src/assets/makeup-artist/compressed/reels/*.{MOV,mov}
+
 # Build output
 dist
 dist-ssr

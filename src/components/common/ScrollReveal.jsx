@@ -5,6 +5,7 @@ export default function ScrollReveal({
   className = '',
   delay = 0,
   direction = 'up',
+  once = true,
 }) {
   const initial = {
     up: { opacity: 0, y: 48 },
@@ -27,7 +28,7 @@ export default function ScrollReveal({
       className={className}
       initial={initial[direction] || initial.up}
       whileInView={animate[direction] || animate.up}
-      viewport={{ once: true, margin: '-80px' }}
+      viewport={{ once, margin: '-80px' }}
       transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}

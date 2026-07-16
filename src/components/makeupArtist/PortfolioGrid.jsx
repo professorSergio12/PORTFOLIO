@@ -3,9 +3,13 @@ import ScrollReveal from '../common/ScrollReveal'
 import ArchedFrame from '../common/ArchedFrame'
 import './PortfolioGrid.css'
 
-export default function PortfolioGrid({ featured, grid }) {
+export default function PortfolioGrid({ featured, grid, tone = 'burgundy' }) {
+  const sectionClass = ['portfolio-grid', tone === 'cream' ? 'portfolio-grid--cream' : '']
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <section className="portfolio-grid">
+    <section className={sectionClass}>
       <div className="portfolio-grid__inner">
         <ScrollReveal direction="left" className="portfolio-grid__portrait">
           <ArchedFrame

@@ -1,7 +1,8 @@
 import sharp from 'sharp'
-import { mkdir, readdir } from 'fs/promises'
+import { mkdir, readdir, unlink } from 'fs/promises'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { thumbPipeline, optimizedPipeline } from './lib/compress-presets.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const galleryDir = path.join(__dirname, '../src/assets/makeup-artist/gallery')
@@ -15,20 +16,19 @@ await mkdir(optimizedDir, { recursive: true })
 
 const files = (await readdir(originalsDir)).filter((f) => /\.jpe?g$/i.test(f))
 
+if (files.length === 0) {
+  console.log('No JPEGs in gallery/originals/. Drop files there first.')
+  process.exit(0)
+}
+
 for (const file of files) {
   const input = path.join(originalsDir, file)
 
-  await sharp(input)
-    .resize(480, null, { withoutEnlargement: true })
-    .jpeg({ quality: 80, mozjpeg: true })
-    .toFile(path.join(thumbsDir, file))
+  await thumbPipeline(sharp(input)).toFile(path.join(thumbsDir, file))
+  await optimizedPipeline(sharp(input)).toFile(path.join(optimizedDir, file))
 
-  await sharp(input)
-    .resize(1200, null, { withoutEnlargement: true })
-    .jpeg({ quality: 82, mozjpeg: true })
-    .toFile(path.join(optimizedDir, file))
-
-  console.log(`✓ ${file}`)
+  await unlink(input)
+  console.log(`✓ ${file} → thumbs + optimized (original deleted)`)
 }
 
 console.log('Done — thumbs (480px) + optimized (1200px) created')

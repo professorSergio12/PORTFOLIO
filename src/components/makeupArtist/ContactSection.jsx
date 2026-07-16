@@ -3,13 +3,17 @@ import ArchedFrame from '../common/ArchedFrame'
 import PillButton from '../common/PillButton'
 import './ContactSection.css'
 
-export default function ContactSection({ contact }) {
+export default function ContactSection({ contact, tone = 'cream' }) {
   const sideImages = contact.sideImages ?? []
   const ctaLabel = contact.cta ?? 'Book a Session'
   const footerText = contact.footer ?? '© 2026 — Makeup Artist & Wedding Planner'
+  const sectionClass = ['contact-section', tone === 'burgundy' ? 'contact-section--burgundy' : '']
+    .filter(Boolean)
+    .join(' ')
+  const ctaVariant = tone === 'burgundy' ? 'outline' : 'cream'
 
   return (
-    <section id="contact" className="contact-section">
+    <section id="contact" className={sectionClass}>
       <div className="contact-section__inner">
         <ScrollReveal direction="left" className="contact-section__side">
           <ArchedFrame src={sideImages[0]} alt="Contact" variant="small" />
@@ -47,7 +51,7 @@ export default function ContactSection({ contact }) {
             )}
           </div>
 
-          <PillButton href={`mailto:${contact.email}`} variant="cream">
+          <PillButton href={`mailto:${contact.email}`} variant={ctaVariant}>
             {ctaLabel}
           </PillButton>
         </ScrollReveal>

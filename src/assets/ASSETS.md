@@ -18,9 +18,10 @@ Drop originals here when you need to re-compress:
 
 These folders are gitignored. After adding raw files, run:
 ```bash
-npm run compress-videos   # hero + decor reels
-npm run compress-reels    # gallery/reels MOV files
-npm run process-heic -- IMG_XXXX.HEIC   # single HEIC → thumbs + optimized
+npm run compress-videos   # hero + decor reels → deletes raw after success
+npm run compress-reels    # reel MOVs → compressed/reels/*.mp4, deletes originals
+npm run process-heic -- IMG_9326.HEIC   # HEIC → thumbs + optimized, deletes .HEIC
+npm run optimize-images   # JPEGs from gallery/originals/ → thumbs + optimized
 ```
 
-Then delete the raw files locally once compressed versions look good.
+Originals are removed automatically after a successful compress. Quality settings preserve colors/detail (no harsh filter break).

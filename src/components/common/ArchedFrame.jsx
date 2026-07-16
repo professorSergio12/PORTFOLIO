@@ -7,6 +7,7 @@ export default function ArchedFrame({
   className = '',
   variant = 'portrait',
   peek = false,
+  once = true,
   children,
 }) {
   return (
@@ -14,7 +15,7 @@ export default function ArchedFrame({
       className={`arched-frame arched-frame--${variant} ${peek ? 'arched-frame--peek' : ''} ${className}`}
       initial={{ opacity: 0, scale: peek ? 0.96 : 0.94 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once, margin: '-60px' }}
       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="arched-frame__door" aria-hidden="true" />
