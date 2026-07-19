@@ -1,7 +1,14 @@
 .home-page {
-  background: var(--cream);
   color: var(--charcoal);
   overflow-x: hidden;
+}
+
+.home-section--cream {
+  background: var(--cream);
+}
+
+.home-section--white {
+  background: var(--white);
 }
 
 .home-page .section-label {

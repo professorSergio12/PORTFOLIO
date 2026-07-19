@@ -2,11 +2,11 @@ import { motion } from 'framer-motion'
 import PillButton from '../common/PillButton'
 import './HomeMemberSpotlight.css'
 
-export default function HomeMemberSpotlight({ member, tone = 'cream' }) {
+export default function HomeMemberSpotlight({ member, tone = 'cream', sectionTone = 'cream' }) {
   const buttonVariant = tone === 'wedding' ? 'wedding' : 'cream'
 
   return (
-    <section className={`home-member home-member--${tone}`}>
+    <section className={`home-member home-member--${tone} home-section--${sectionTone}`}>
       <div className="home-member__inner">
         <div className="home-member__content">
           <motion.div

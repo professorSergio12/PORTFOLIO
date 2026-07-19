@@ -4,9 +4,9 @@ import './HomePortals.css'
 
 const ease = [0.22, 1, 0.36, 1]
 
-export default function HomePortals({ portals }) {
+export default function HomePortals({ portals, sectionTone = 'white' }) {
   return (
-    <section id="portals" className="home-portals">
+    <section id="portals" className={`home-portals home-section--${sectionTone}`}>
       <div className="home-portals__inner">
         <motion.div
           className="home-portals__header"

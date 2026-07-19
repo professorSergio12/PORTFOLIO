@@ -13,10 +13,10 @@ export default function HomePage() {
     <main className="home-page">
       <HomeHero hero={data.hero} />
       <HomePhotoStrip photos={data.photoStrip} />
-      <HomePortals portals={data.portals} />
-      <HomeMemberSpotlight member={data.weddingSpotlight} tone="wedding" />
-      <HomeMemberSpotlight member={data.makeupSpotlight} tone="makeup" />
-      <HomeFooter footer={data.footer} />
+      <HomePortals portals={data.portals} sectionTone="white" />
+      <HomeMemberSpotlight member={data.weddingSpotlight} tone="wedding" sectionTone="cream" />
+      <HomeMemberSpotlight member={data.makeupSpotlight} tone="makeup" sectionTone="white" />
+      <HomeFooter footer={data.footer} sectionTone="cream" />
     </main>
   )
 }

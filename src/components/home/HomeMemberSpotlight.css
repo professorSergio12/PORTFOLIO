@@ -28,20 +28,12 @@
   background: rgba(91, 13, 21, 0.1);
 }
 
-.home-member--wedding {
-  background: var(--wp-champagne, #f7f0e8);
-}
-
 .home-member--wedding .section-label {
   color: var(--wp-gold, #b8943f);
 }
 
 .home-member--wedding .home-member__title {
   color: var(--wp-wine, #5c2e2e);
-}
-
-.home-member--makeup {
-  background: var(--cream);
 }
 
 .home-member--makeup .home-member__title {

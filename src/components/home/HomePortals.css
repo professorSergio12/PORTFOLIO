@@ -1,6 +1,5 @@
 .home-portals {
   padding: clamp(3rem, 7vw, 5rem) clamp(0.85rem, 2vw, 1.25rem);
-  background: var(--white);
 }
 
 .home-portals__inner {
