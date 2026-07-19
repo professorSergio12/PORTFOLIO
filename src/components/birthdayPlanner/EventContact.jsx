@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import ScrollReveal from '../common/ScrollReveal'
+import ContactDetails from '../common/ContactDetails'
+import { contactInfo } from '../../data/contactInfo'
 import './EventContact.css'
 
 export default function EventContact({ contact }) {
@@ -13,8 +15,10 @@ export default function EventContact({ contact }) {
             Ready to create something beautiful? Reach out and we'll bring your vision to life.
           </p>
 
+          <ContactDetails className="contact-details--party" />
+
           <motion.a
-            href="#contact"
+            href={`mailto:${contactInfo.primaryEmail}`}
             className="event-contact__cta"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.98 }}

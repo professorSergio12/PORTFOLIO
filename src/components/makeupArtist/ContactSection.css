@@ -70,6 +70,8 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
+  max-width: 520px;
 }
 
 .contact-section__link {
@@ -119,12 +121,32 @@ a.contact-section__link:hover {
     grid-template-columns: 1fr;
   }
 
-  .contact-section__side {
+  .contact-section--wedding .contact-section__side {
+    display: flex;
+  }
+
+  .contact-section--wedding .contact-section__inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .contact-section--wedding .contact-section__center {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+
+  .contact-section:not(.contact-section--wedding) .contact-section__side {
     display: none;
   }
 
   .contact-section__footer {
     margin-top: 2rem;
     padding-top: 1.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .contact-section--wedding .contact-section__inner {
+    grid-template-columns: 1fr;
   }
 }

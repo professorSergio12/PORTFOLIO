@@ -22,7 +22,7 @@ export default function Navbar() {
   const links = [
     { to: '/', label: 'Home', brand: 'home' },
     { to: '/makeup-artist', label: 'Makeup Artist', brand: 'mua' },
-    { to: '/wedding-planner', label: 'Wedding Planner', brand: 'wp' },
+    { to: '/wedding-planner', label: 'Miva Planners', brand: 'wp' },
     { to: '/birthday-planner', label: 'Party Blowers', brand: 'bp' },
   ]
 

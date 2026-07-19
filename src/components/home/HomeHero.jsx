@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import PillButton from '../common/PillButton'
 import './HomeHero.css'
 
-const COLLAGE_LAYOUTS = ['hero', 'tall', 'wide', 'square', 'tall', 'square']
+const COLLAGE_LAYOUTS = ['primary', 'stacked', 'side-bottom', 'side-wide', 'side-tall']
 
 const ease = [0.22, 1, 0.36, 1]
 
@@ -88,10 +88,17 @@ export default function HomeHero({ hero }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 0.9, ease }}
           >
-            {collage.map((photo, index) => (
+            {collage.map((item, index) => {
+            const photo = typeof item === 'string' ? item : item.image
+            const layout =
+              typeof item === 'string'
+                ? COLLAGE_LAYOUTS[index % COLLAGE_LAYOUTS.length]
+                : item.layout ?? COLLAGE_LAYOUTS[index % COLLAGE_LAYOUTS.length]
+
+            return (
               <motion.div
-                key={photo}
-                className={`home-hero__collage-item home-hero__collage-item--${COLLAGE_LAYOUTS[index % COLLAGE_LAYOUTS.length]}`}
+                key={`${photo}-${index}`}
+                className={`home-hero__collage-item home-hero__collage-item--${layout}`}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + index * 0.08, duration: 0.65, ease }}
@@ -99,7 +106,8 @@ export default function HomeHero({ hero }) {
               >
                 <img src={photo} alt="" loading={index < 2 ? 'eager' : 'lazy'} decoding="async" />
               </motion.div>
-            ))}
+            )
+          })}
           </motion.div>
         ) : null}
       </div>

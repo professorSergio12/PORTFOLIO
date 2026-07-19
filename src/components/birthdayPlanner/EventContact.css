@@ -29,7 +29,11 @@
   font-size: 0.95rem;
   line-height: 1.7;
   color: rgba(61, 74, 92, 0.72);
-  margin: 0 0 1.75rem;
+  margin: 0 0 1.35rem;
+}
+
+.event-contact__content .contact-details {
+  margin-bottom: 1.75rem;
 }
 
 .event-contact__cta {

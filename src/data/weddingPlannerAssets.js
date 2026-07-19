@@ -93,6 +93,24 @@ function isPortraitThumb(entry) {
   return /-portrait$/i.test(entry.name)
 }
 
+function normalizeName(name) {
+  return name.replace(/\.[^.]+$/, '').toLowerCase()
+}
+
+const PARTY_DECOR_NAMES = new Set([
+  'whatsapp-image-2026-07-15-at-12.21.45',
+  'whatsapp-image-2026-07-15-at-13.08.46',
+])
+
+function isPartyDecor(entry) {
+  return PARTY_DECOR_NAMES.has(normalizeName(entry.name))
+}
+
+function findByName(entries, name) {
+  const base = normalizeName(name)
+  return entries.find((entry) => entry.name.toLowerCase() === base) ?? null
+}
+
 export function loadWeddingPlannerAssets() {
   const heroVideo = pickPreferred(entriesFromGlob(heroVideos), ['decor-reel', 'hero'])
 
@@ -110,7 +128,9 @@ export function loadWeddingPlannerAssets() {
   const photobooth = images.filter((entry) => pathIncludes(entry, 'photobooth'))
   const decor = images.filter(
     (entry) =>
-      pathIncludes(entry, 'decor') && !pathIncludes(entry, 'photobooth'),
+      pathIncludes(entry, 'decor') &&
+      !pathIncludes(entry, 'photobooth') &&
+      !isPartyDecor(entry),
   )
 
   const dogriVideos = sortByName(entriesFromGlob(allVideos)).filter(
@@ -147,6 +167,17 @@ export function loadWeddingPlannerAssets() {
 
   const marqueeSource = [...dogriImages, ...decor]
 
+  const meEntry = personal.find((entry) => entry.name.toLowerCase() === 'me') ?? null
+
+  const gurudawaraEntry =
+    findByName(decor, 'gurudawara.jpg') ?? decor[0] ?? null
+
+  const dogri2916Entry = findByName(dogriImages, '229A2916.jpg') ?? dogriFeaturedEntry
+
+  const meUrls = meEntry ? { full: meEntry.url, display: meEntry.url } : { full: null, display: null }
+  const gurudawaraUrls = resolveImageUrls(gurudawaraEntry, thumbEntries, displayEntries)
+  const dogri2916Urls = resolveImageUrls(dogri2916Entry, thumbEntries, displayEntries)
+
   return {
     heroVideo: heroVideo?.url ?? null,
     portrait,
@@ -156,6 +187,11 @@ export function loadWeddingPlannerAssets() {
     marqueePhotos: marqueeSource.map((entry, index) =>
       toGalleryItem(entry, index, thumbEntries, displayEntries),
     ),
+    homeImages: {
+      me: meUrls.full,
+      dogri2916: dogri2916Urls.full ?? dogri2916Urls.display,
+      gurudawara: gurudawaraUrls.full ?? gurudawaraUrls.display,
+    },
     firstImpression: {
       hero:
         welcomeHeroUrls.full ??
@@ -181,13 +217,8 @@ export function loadWeddingPlannerAssets() {
     },
     decor: decor.map((entry, index) => toGalleryItem(entry, index, thumbEntries, displayEntries)),
     contactImages: [
-      resolveImageUrls(secondaryPortraitEntry, thumbEntries, displayEntries).display ??
-        secondaryPortraitEntry?.url,
-      resolveImageUrls(decor[decor.length - 1], thumbEntries, displayEntries).display ??
-        decor[decor.length - 1]?.url,
-      resolveImageUrls(dogriImages[2] ?? dogriImages[0], thumbEntries, displayEntries).display ??
-        dogriImages[2]?.url ??
-        dogriImages[0]?.url,
+      meUrls.display ?? meUrls.full ?? portrait,
+      gurudawaraUrls.display ?? gurudawaraUrls.full ?? decor[decor.length - 1]?.url,
     ].filter(Boolean),
   }
 }

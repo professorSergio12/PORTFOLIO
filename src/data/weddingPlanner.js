@@ -1,12 +1,16 @@
 import { loadWeddingPlannerAssets } from './weddingPlannerAssets'
+import { loadMakeupArtistAssets } from './makeupArtistAssets'
+import { contactInfo } from './contactInfo'
 
 const assets = loadWeddingPlannerAssets()
+const makeupAssets = loadMakeupArtistAssets()
 
 export const weddingPlannerData = {
-  brand: 'Wedding Planner',
-  heroLabel: 'Wedding Planner',
-  heroTitle: 'Crafting Timeless Celebrations',
-  tagline: 'Where every detail tells your story — from welcome to the last dance.',
+  brand: 'Miva Planners',
+  heroLabel: 'Miva Planners',
+  heroTitle: 'Miva Planners',
+  tagline:
+    'Blending Milan (union) and Viva (life) — short, sharp, and full of energy for celebrations that feel unmistakably yours.',
   heroVideo: assets.heroVideo,
 
   journey: {
@@ -138,10 +142,12 @@ export const weddingPlannerData = {
   },
 
   contact: {
-    email: 'maliakathakur0408@gmail.com',
-    phone: '+91 7973060350',
+    ...contactInfo,
     cta: 'Plan Your Wedding',
-    footer: '© 2026 — Wedding Planner',
-    sideImages: assets.contactImages,
+    footer: '© 2026 — Miva Planners',
+    sideImages: [
+      assets.homeImages.me ?? assets.contactImages[0],
+      makeupAssets.homeImages['8906'],
+    ].filter(Boolean),
   },
 }

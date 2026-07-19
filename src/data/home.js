@@ -6,9 +6,15 @@ const weddingAssets = loadWeddingPlannerAssets()
 const makeupAssets = loadMakeupArtistAssets()
 const birthdayAssets = loadBirthdayPlannerAssets()
 
-const weddingPhoto = weddingAssets.marqueePhotos[0]?.image ?? weddingAssets.decor[0]?.image
-const makeupPhoto = makeupAssets.gallery[0]?.image ?? makeupAssets.portrait
-const birthdayPhoto = birthdayAssets.images[0]?.image
+const weddingPhoto =
+  weddingAssets.homeImages.dogri2916 ??
+  weddingAssets.marqueePhotos[0]?.image ??
+  weddingAssets.decor[0]?.image
+const makeupPhoto = makeupAssets.homeImages['8906'] ?? makeupAssets.gallery[0]?.image ?? makeupAssets.portrait
+const birthdayPhoto =
+  birthdayAssets.featuredImages.birthdayHall ??
+  birthdayAssets.images[0]?.image
+const partyStagePhoto = birthdayAssets.featuredImages.luxuryStage
 
 export const homeData = {
   hero: {
@@ -16,13 +22,12 @@ export const homeData = {
     title: 'Where Celebrations Come to Life',
     tagline: 'Makeup artistry, wedding planning, and party experiences — all under one roof.',
     collage: [
-      weddingAssets.marqueePhotos[0]?.image,
-      makeupAssets.gallery[1]?.image ?? makeupPhoto,
-      weddingAssets.decor[0]?.image,
-      birthdayAssets.images[1]?.image ?? birthdayPhoto,
-      weddingAssets.marqueePhotos[2]?.image,
-      makeupAssets.gallery[3]?.image ?? makeupAssets.gallery[0]?.image,
-    ].filter(Boolean),
+      { image: weddingAssets.homeImages.dogri2916, layout: 'primary' },
+      { image: makeupAssets.homeImages['8906'], layout: 'stacked' },
+      { image: weddingAssets.homeImages.gurudawara, layout: 'side-bottom' },
+      { image: partyStagePhoto ?? makeupAssets.homeImages['9157'], layout: 'side-wide' },
+      { image: birthdayPhoto, layout: 'side-tall' },
+    ].filter((item) => item.image),
     highlights: [
       { value: '3', label: 'Specialties' },
       { value: '100+', label: 'Events Styled' },
@@ -31,16 +36,20 @@ export const homeData = {
   },
 
   photoStrip: [
-    ...weddingAssets.marqueePhotos.slice(0, 4).map((item) => item.image),
-    ...makeupAssets.gallery.slice(0, 3).map((item) => item.image),
-    ...birthdayAssets.images.slice(0, 2).map((item) => item.image),
+    weddingAssets.homeImages.dogri2916,
+    makeupAssets.homeImages['8906'],
+    makeupAssets.homeImages['9157'],
+    weddingAssets.homeImages.gurudawara,
+    partyStagePhoto,
+    birthdayPhoto,
+    ...makeupAssets.gallery.slice(0, 2).map((item) => item.image),
   ].filter(Boolean),
 
   portals: [
     {
       id: 'wedding',
       to: '/wedding-planner',
-      label: 'Wedding Planner',
+      label: 'Miva Planners',
       title: 'Crafting Timeless Celebrations',
       teaser: 'Personal, stress-free weddings — from haldi to the last dance.',
       accent: 'wp',
@@ -67,7 +76,7 @@ export const homeData = {
   ],
 
   weddingSpotlight: {
-    label: 'Wedding Planner',
+    label: 'Miva Planners',
     title: 'About Me',
     portrait: weddingAssets.portrait,
     photos: weddingAssets.marqueePhotos.slice(0, 6).map((item) => item.image),
@@ -92,18 +101,6 @@ export const homeData = {
   },
 
   footer: {
-    copyright: '© 2026 — Celebrations · Makeup · Wedding · Events',
-    instagram: [
-      {
-        label: 'Wedding Planner',
-        handle: '@_malai.kaaa_',
-        url: 'https://www.instagram.com/_malai.kaaa_?igsh=Y2VvY3ZqbXp3bDhl',
-      },
-      {
-        label: 'Beauty Maison by Mannat Vig',
-        handle: '@beautymaisonbymannat_',
-        url: 'https://www.instagram.com/beautymaisonbymannat_?igsh=anJzZGx2aDFnZDRj',
-      },
-    ],
+    copyright: '© 2026 — Celebrations · Miva Planners · Beauty Maison · Events',
   },
 }

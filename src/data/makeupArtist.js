@@ -1,4 +1,5 @@
 import { loadMakeupArtistAssets } from './makeupArtistAssets'
+import { contactInfo } from './contactInfo'
 
 const assets = loadMakeupArtistAssets()
 
@@ -99,8 +100,7 @@ export const makeupArtistData = {
   whyUsImage: assets.whyUsImage,
 
   contact: {
-    email: 'mishtyvig@gmail.com',
-    phone: '+91 6283682424',
+    ...contactInfo,
     cta: 'Book Now',
     footer: '© 2026 — Beauty Maison by Mannat Vig',
     sideImages: assets.contactImages,

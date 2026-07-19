@@ -1,4 +1,5 @@
 import { loadBirthdayPlannerAssets } from './birthdayPlannerAssets'
+import { contactInfo } from './contactInfo'
 
 const assets = loadBirthdayPlannerAssets()
 
@@ -52,6 +53,7 @@ export const birthdayPlannerData = {
   videos: assets.videos,
 
   contact: {
+    ...contactInfo,
     cta: 'Plan Your Event',
     footer: '© 2026 — Party Blowers',
   },

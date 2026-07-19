@@ -126,6 +126,10 @@ export function loadMakeupArtistAssets() {
     reels,
     portfolioDetail: buildPortfolioDetail(gallery),
     contactImages: [contactLeft?.url, contactRight?.url].filter(Boolean),
+    homeImages: {
+      '8906': optimizedEntries.find((entry) => entry.name === '8906')?.url ?? null,
+      '9157': optimizedEntries.find((entry) => entry.name === '9157')?.url ?? null,
+    },
     processImage,
     whyUsImage,
   }
